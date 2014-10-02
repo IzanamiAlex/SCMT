@@ -7,28 +7,25 @@
 package provider.view;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import provider.controller.AdminProvider;
 
 /**
  *
  * @author Izanami
  */
-public class ViewModifyProviderPanel extends SwitchJPanel {
+public class ViewAddProviderPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ViewModifyProviderPanel
+     * Creates new form ViewAddProviderPanel
      */
-    public ViewModifyProviderPanel() {
+    public ViewAddProviderPanel() {
         initComponents();
-        this.adminProvider = null;
     }
-    public ViewModifyProviderPanel(AdminProvider adminProvider) {
+
+    public ViewAddProviderPanel(AdminProvider adminProvider) {
         initComponents();
         this.adminProvider=adminProvider;
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,20 +39,15 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         addressTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         phoneTextField = new javax.swing.JTextField();
-        modifyProviderButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
+        createProviderButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setName("Modificar proveedor"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(507, 305));
+        jLabel5.setText("NUEVO PROVEEDOR");
 
-        jLabel5.setText("MODIFICAR PROVEEDOR");
-
-        jLabel6.setText("Modifique la siguiente informacion acerca del nuevo proveedor");
+        jLabel6.setText("- Llene la siguiente informacion acerca del nuevo proveedor");
 
         jLabel1.setText("Nombre:");
 
@@ -63,14 +55,12 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
 
         jLabel3.setText("Telefono");
 
-        modifyProviderButton.setText("Guardar cambios");
-        modifyProviderButton.addActionListener(new java.awt.event.ActionListener() {
+        createProviderButton.setText("Crear Proveedor");
+        createProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyProviderButtonActionPerformed(evt);
+                createProviderButtonActionPerformed(evt);
             }
         });
-
-        cancelButton.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,8 +76,13 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(68, 68, 68)
+                                        .addComponent(createProviderButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
@@ -95,17 +90,13 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nameTextField)
-                                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(modifyProviderButton)
-                                .addGap(45, 45, 45)
-                                .addComponent(cancelButton)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -121,36 +112,32 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifyProviderButton)
-                    .addComponent(cancelButton))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(createProviderButton)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProviderButtonActionPerformed
+    private void createProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProviderButtonActionPerformed
         String nameProvider = nameTextField.getText();
         String addressProvider = addressTextField.getText();
         String phoneProvider = phoneTextField.getText();
         int identifierProvider=adminProvider.addProvider(nameProvider, addressProvider, phoneProvider);
         JOptionPane.showMessageDialog(null, "Se ha creado el proveedor numero "+identifierProvider+".");
-    }//GEN-LAST:event_modifyProviderButtonActionPerformed
+    }//GEN-LAST:event_createProviderButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
-    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton createProviderButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JButton modifyProviderButton;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField phoneTextField;
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;
-    
 }

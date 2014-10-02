@@ -28,20 +28,25 @@ public class Laucher extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        providerModuleButton = new javax.swing.JButton();
+        inventoryModuleButton = new javax.swing.JButton();
+        salesModuleButton = new javax.swing.JButton();
+        reportsModuleButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Proveedores");
+        providerModuleButton.setText("Proveedores");
+        providerModuleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                providerModuleButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Inventario");
+        inventoryModuleButton.setText("Inventario");
 
-        jButton3.setText("Ventas");
+        salesModuleButton.setText("Ventas");
 
-        jButton4.setText("Reportes");
+        reportsModuleButton.setText("Reportes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,12 +55,12 @@ public class Laucher extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(providerModuleButton)
+                    .addComponent(inventoryModuleButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(salesModuleButton)
+                    .addComponent(reportsModuleButton))
                 .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
@@ -63,17 +68,22 @@ public class Laucher extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(providerModuleButton)
+                    .addComponent(salesModuleButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(inventoryModuleButton)
+                    .addComponent(reportsModuleButton))
                 .addGap(57, 57, 57))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void providerModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerModuleButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_providerModuleButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,9 +121,9 @@ public class Laucher extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton inventoryModuleButton;
+    private javax.swing.JButton providerModuleButton;
+    private javax.swing.JButton reportsModuleButton;
+    private javax.swing.JButton salesModuleButton;
     // End of variables declaration//GEN-END:variables
 }

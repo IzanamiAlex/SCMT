@@ -6,6 +6,9 @@
 
 package provider.controller;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import provider.model.DAOProvider;
 import provider.model.Provider;
 
@@ -30,7 +33,14 @@ public class AdminProvider {
     }
     
     public int addProvider(String name,String address, String phone){
-        return 0;
+        int indentifier=0;
+        try {
+            Provider provider = new Provider(name, phone, address);
+            indentifier = dataProviders.store(provider);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminProvider.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return indentifier; 
     }
     
     public void modifyProvider(String identifier, String name,String address, String phone){

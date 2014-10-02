@@ -7,6 +7,7 @@
 package core;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Set;
@@ -20,15 +21,11 @@ public class ProductDAO extends AbstractDAO<Product>{
     @Override
     public int store(Product product) throws SQLException {
         int numRows = 0;
-        Connection con = getConnection();
+        Connection connection = getConnection();
         
         String orden = "INSERT INTO product (barcode, nameProduct,description,priceUnit) VALUES ( '" +
                 product.getBarcode()+"' "+ ",'" + product.getNameProduct() + "' "+ ",'" + 
                 product.getDescription()+ "' " + ",'" + product.getPrecioUnit()+ "' "+ ")";
-        Statement sentencia = con.createStatement();
-        numRows = sentencia.executeUpdate(orden);
-        sentencia.close();
-        closeConnection(con);
         return numRows;
     }
 
@@ -38,7 +35,7 @@ public class ProductDAO extends AbstractDAO<Product>{
     }
 
     @Override
-    public int update(Product product, String condition) throws SQLException {
+    public int update(Product product) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
