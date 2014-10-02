@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package provider;
+package core;
 
 /**
  *
@@ -16,7 +16,10 @@ public class Product {
     private String description;
     private double priceUnit;
 
-    public Product(long barcode, String nameProduct, String description, double priceUnit) {
+    public Product(long barcode, 
+            String nameProduct, 
+            String description, 
+            double priceUnit) {
         this.barcode = barcode;
         this.nameProduct = nameProduct;
         this.description = description;
