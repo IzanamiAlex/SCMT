@@ -38,11 +38,6 @@ public class ProductDAO extends AbstractDAO<Product>{
     }
 
     @Override
-    public int delete(String condition) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public int update(Product product, String condition) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

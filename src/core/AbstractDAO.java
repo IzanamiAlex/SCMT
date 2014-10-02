@@ -57,10 +57,9 @@ public abstract class AbstractDAO<T> {
     }
     
     public abstract int store(T entity)throws SQLException;
-    public abstract int delete(T entity)throws SQLException;
-    public abstract int delete(String condition)throws SQLException; //posiblemente se elimine.
     public abstract int update(T entity, String condition)throws SQLException;
-    public abstract T find(String condition)throws SQLException;
+    public abstract int delete(T entity)throws SQLException; 
+    public abstract T find(String identifier)throws SQLException;
     public abstract Set<T> load(String condition)throws SQLException;
 
     public final boolean isLoadedDriver() {

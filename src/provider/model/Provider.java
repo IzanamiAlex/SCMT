@@ -20,24 +20,23 @@ import java.sql.Date;
 public class Provider {
     private String name;
     private String phone;
-    private String addres;
-    private Date dateProvision;
-    private Date dayRangeProvision;
-    
-    public Provider(){
-        
+    private String address;
+
+    public Provider() {
+        name=null;
+        phone=null;
+        address=null;
     }
 
-    public Provider(String name, 
-            String phone, 
-            String addres, 
-            Date dateProvision, 
-            Date dayRangeProvision) {
+    public Provider(String name, String phone, String address) {
         this.name = name;
         this.phone = phone;
-        this.addres = addres;
-        this.dateProvision = dateProvision;
-        this.dayRangeProvision = dayRangeProvision;
+        this.address = address;
+    }
+    
+    @Override
+    public String toString(){
+        return name;
     }
 
     /**
@@ -53,9 +52,8 @@ public class Provider {
     public String getPhone() {
         return phone;
     }
-
     /**
-     * @param phoneProvider the phoneProvider to set
+     * @param phone
      */
     public void setPhone(String phone) {
         this.phone = phone;
@@ -65,29 +63,6 @@ public class Provider {
      * @return the addresProvider
      */
     public String getAddres() {
-        return addres;
+        return address;
     }
-
-    /**
-     * @return the dateProvider
-     */
-    public Date getDateProvision() {
-        return dateProvision;
-    }
-
-    /**
-     * @param dateProvider the dateProvider to set
-     * 
-     */
-    public void setDateProvision(Date dateProvision) {
-        this.dateProvision = dateProvision;
-    }
-    
-        /**
-     * @return the dayRangeProvision
-     */
-    public Date getDayRangeProvision() {
-        return dayRangeProvision;
-    }
-    
 }
