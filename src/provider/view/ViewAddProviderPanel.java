@@ -24,7 +24,7 @@ public class ViewAddProviderPanel extends javax.swing.JPanel {
 
     public ViewAddProviderPanel(AdminProvider adminProvider) {
         initComponents();
-        this.adminProvider=adminProvider;
+        this.adminProvider = adminProvider;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +58,7 @@ public class ViewAddProviderPanel extends javax.swing.JPanel {
         createProviderButton.setText("Crear Proveedor");
         createProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createProviderButtonActionPerformed(evt);
+                createProvider(evt);
             }
         });
 
@@ -118,13 +118,16 @@ public class ViewAddProviderPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProviderButtonActionPerformed
+    private void createProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProvider
         String nameProvider = nameTextField.getText();
         String addressProvider = addressTextField.getText();
         String phoneProvider = phoneTextField.getText();
-        int indentifierProvider=adminProvider.addProvider(nameProvider, addressProvider, phoneProvider);
-        JOptionPane.showMessageDialog(null, "Se ha creado el proveedor numero "+indentifierProvider+".");
-    }//GEN-LAST:event_createProviderButtonActionPerformed
+        int indentifierProvider = adminProvider.addProvider(nameProvider, 
+            addressProvider, phoneProvider);
+        
+        String message = "Se ha creado el proveedor numero "+indentifierProvider+".";
+        JOptionPane.showMessageDialog(null, message);
+    }//GEN-LAST:event_createProvider
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

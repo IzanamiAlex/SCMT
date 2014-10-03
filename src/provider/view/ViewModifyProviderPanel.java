@@ -6,6 +6,7 @@
 
 package provider.view;
 
+import shared.view.SwitchJPanel;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import provider.controller.AdminProvider;
@@ -29,8 +30,8 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
     }
     
     @Override
-    public void setData(String indentificador) {
-        dataProvider = adminProvider.locateProvider(indentificador);
+    public void setData(String identificador) {
+        dataProvider = adminProvider.getDataProvider(identificador);
         nameTextField.setText(dataProvider.get("name"));
         phoneTextField.setText(dataProvider.get("phone"));
         addressTextField.setText(dataProvider.get("address"));
@@ -73,14 +74,14 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
         modifyProviderButton.setText("Guardar cambios");
         modifyProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyProviderButtonActionPerformed(evt);
+                modifyProvider(evt);
             }
         });
 
         cancelButton.setText("Cancelar");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                cancelModifyProvider(evt);
             }
         });
 
@@ -141,22 +142,25 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProviderButtonActionPerformed
-        String indentifierProvider = dataProvider.get("indentifier");
+    private void modifyProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProvider
+        
+        String identifierProvider = dataProvider.get("identifier");
         String nameProvider = nameTextField.getText();
         String phoneProvider = phoneTextField.getText();
         String addressProvider = addressTextField.getText();
-        System.out.println(indentifierProvider);
-        adminProvider.modifyProvider(indentifierProvider, nameProvider, addressProvider, phoneProvider);
-        JOptionPane.showMessageDialog(null, "Se ha modificado el proveedor numero "+indentifierProvider+".");
-        switchPanel();
+        adminProvider.modifyProvider(identifierProvider, nameProvider, addressProvider, phoneProvider);
+        
+        String message = "Se ha modificado el proveedor numero "+identifierProvider+".";
+        JOptionPane.showMessageDialog(null, message);
+        
+        swapPanels();
         switchPanel.setData(null);
-    }//GEN-LAST:event_modifyProviderButtonActionPerformed
+    }//GEN-LAST:event_modifyProvider
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        switchPanel();
+    private void cancelModifyProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelModifyProvider
+        swapPanels();
         switchPanel.setData(null);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_cancelModifyProvider
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

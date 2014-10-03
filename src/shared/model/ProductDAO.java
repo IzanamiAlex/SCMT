@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package core;
+package shared.model;
 
 import java.sql.Connection;
 import java.sql.SQLException;

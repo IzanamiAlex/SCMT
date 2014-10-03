@@ -6,6 +6,7 @@
 
 package provider.view;
 
+import shared.view.SwitchJPanel;
 import provider.controller.AdminProvider;
 
 /**
@@ -29,9 +30,8 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
     
     @Override
     public void setData(String data) {
-        String nameProvider=nameProviderTextField.getText();
-        Object listProvider[][]=adminProvider.getProviderList(nameProvider);
-        System.out.print(listProvider.length==0);
+        String nameProvider = nameProviderTextField.getText();
+        Object listProvider[][] = adminProvider.getProviderList(nameProvider);
         removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             listProvider,
             new String [] {
@@ -75,7 +75,7 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
 
         nameProviderTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                nameProviderTextFieldKeyReleased(evt);
+                updateTable(evt);
             }
         });
 
@@ -87,7 +87,7 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
         removeProviderButton.setText("Aceptar");
         removeProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeProviderButtonActionPerformed(evt);
+                selectProvider(evt);
             }
         });
 
@@ -127,24 +127,23 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void removeProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProviderButtonActionPerformed
+    private void selectProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectProvider
         int selectedRow = removeProviderTable.getSelectedRow();
         Object identifier = removeProviderTable.getValueAt(selectedRow, 0);
-        switchPanel();
+        swapPanels();
         switchPanel.setData(identifier.toString());
-    }//GEN-LAST:event_removeProviderButtonActionPerformed
+    }//GEN-LAST:event_selectProvider
 
-    private void nameProviderTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProviderTextFieldKeyReleased
-        String nameProvider=nameProviderTextField.getText();
-        Object listProvider[][]=adminProvider.getProviderList(nameProvider);
-        System.out.print(listProvider.length==0);
+    private void updateTable(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateTable
+        String nameProvider = nameProviderTextField.getText();
+        Object listProvider[][] = adminProvider.getProviderList(nameProvider);
         removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             listProvider,
             new String [] {
                 "Número", "Proveedor"
             }
         ));
-    }//GEN-LAST:event_nameProviderTextFieldKeyReleased
+    }//GEN-LAST:event_updateTable
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

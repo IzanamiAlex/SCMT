@@ -6,6 +6,7 @@
 
 package provider.view;
 
+import shared.view.SwitchJPanel;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import provider.controller.AdminProvider;
@@ -32,8 +33,8 @@ public class ViewRemoveProviderPanel extends SwitchJPanel {
     }
     
     @Override
-    public void setData(String indentificador) {
-        dataProvider = adminProvider.locateProvider(indentificador);
+    public void setData(String identificador) {
+        dataProvider = adminProvider.getDataProvider(identificador);
         nameTextField.setText(dataProvider.get("name"));
         phoneTextField.setText(dataProvider.get("phone"));
         addressTextField.setText(dataProvider.get("address"));
@@ -79,14 +80,14 @@ public class ViewRemoveProviderPanel extends SwitchJPanel {
         removeProviderButton.setText("Elminar Proveedor");
         removeProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeProviderButtonActionPerformed(evt);
+                removeProvider(evt);
             }
         });
 
         cancelButton.setText("Cancelar");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                cancelRemoveProvider(evt);
             }
         });
 
@@ -147,19 +148,21 @@ public class ViewRemoveProviderPanel extends SwitchJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void removeProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProviderButtonActionPerformed
-        String indentifierProvider=dataProvider.get("indentifier");
-        System.out.println(indentifierProvider);
-        adminProvider.removeProvider(indentifierProvider);
-        JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor numero "+indentifierProvider+".");
-        switchPanel();
+    private void removeProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProvider
+        String identifierProvider = dataProvider.get("identifier");
+        adminProvider.removeProvider(identifierProvider);
+        
+        String message = "Se ha eliminado el proveedor numero "+identifierProvider+".";
+        JOptionPane.showMessageDialog(null, message);
+        
+        swapPanels();
         switchPanel.setData(null);
-    }//GEN-LAST:event_removeProviderButtonActionPerformed
+    }//GEN-LAST:event_removeProvider
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        switchPanel();
+    private void cancelRemoveProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRemoveProvider
+        swapPanels();
         switchPanel.setData(null);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_cancelRemoveProvider
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

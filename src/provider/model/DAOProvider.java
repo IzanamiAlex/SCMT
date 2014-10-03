@@ -6,12 +6,8 @@
 
 package provider.model;
 
-import core.AbstractDAO;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import shared.model.AbstractDAO;
+import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,10 +24,10 @@ public class DAOProvider extends AbstractDAO<Provider>{
          ** Build script **
          ******************/
         
-        String scriptStore = "INSERT INTO provider(indentifier, name, phone, address) "
-            + "VALUES ($indentifier$, '$name$', '$phone$', '$address$');";
-        long indentifier = nextIdentifierProvider();
-        scriptStore = scriptStore.replace("$indentifier$", Long.toString(indentifier));
+        String scriptStore = "INSERT INTO provider(identifier, name, phone, address) "+
+            "VALUES ($identifier$, '$name$', '$phone$', '$address$');";
+        long identifier = nextIdentifierProvider();
+        scriptStore = scriptStore.replace("$identifier$", Long.toString(identifier));
         scriptStore = scriptStore.replace("$name$", provider.getName());
         scriptStore = scriptStore.replace("$phone$", provider.getPhone());
         scriptStore = scriptStore.replace("$address$", provider.getAddres());
@@ -46,7 +42,7 @@ public class DAOProvider extends AbstractDAO<Provider>{
         statement.close();
         closeConnection(connection);
         
-        return (int)indentifier;
+        return (int)identifier;
     }
 
     @Override
@@ -58,9 +54,9 @@ public class DAOProvider extends AbstractDAO<Provider>{
         
         String scriptUpdate = "UPDATE provider\n" +
             "   SET  name = '$name$', phone = '$phone$', address = '$address$'\n" +
-            " WHERE indentifier = $indentifier$;";
-        scriptUpdate = scriptUpdate.replace("$indentifier$", 
-            Long.toString(provider.getIndentifier()));
+            " WHERE identifier = $identifier$;";
+        scriptUpdate = scriptUpdate.replace("$identifier$", 
+            Long.toString(provider.getIdentifier()));
         scriptUpdate = scriptUpdate.replace("$name$", provider.getName());
         scriptUpdate = scriptUpdate.replace("$phone$", provider.getPhone());
         scriptUpdate = scriptUpdate.replace("$address$", provider.getAddres());
@@ -74,7 +70,7 @@ public class DAOProvider extends AbstractDAO<Provider>{
         statement.execute();
         statement.close();
          
-        return (int) provider.getIndentifier();
+        return (int) provider.getIdentifier();
     }
 
     @Override
@@ -85,9 +81,13 @@ public class DAOProvider extends AbstractDAO<Provider>{
          ** Build script **
          ******************/
         
-        String scriptDelete = "DELETE FROM provider WHERE indentifier = $indentifier$";
-        scriptDelete = scriptDelete.replace("$indentifier$", 
-                Long.toString(provider.getIndentifier()));
+        String scriptDelete = "DELETE FROM provider WHERE identifier = $identifier$";
+        scriptDelete = scriptDelete.replace("$identifier$", 
+            Long.toString(provider.getIdentifier()));
+        
+        /********************
+         ** Execute script **
+         ********************/
         
         Connection connection = getConnection();
         Statement statement = connection.createStatement();
@@ -98,66 +98,107 @@ public class DAOProvider extends AbstractDAO<Provider>{
     }
 
     @Override
-    public Provider find(String indentifier) throws SQLException {
-        Provider provider;
+    public Provider find(String identifier) throws SQLException {
+
+        /******************
+         ** Build script **
+         ******************/
+        
+        String scriptFind = "SELECT * FROM provider WHERE identifier = $identifier$;";
+        scriptFind = scriptFind.replace("$identifier$", identifier);
+        
+        /********************
+         ** Execute script **
+         ********************/
+        
         Connection connection = getConnection();
-        
-        String scriptFind = "SELECT * FROM provider WHERE indentifier = $indentifier$;";
-        scriptFind = scriptFind.replace("$indentifier$", indentifier);
-        
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(scriptFind);
         resultSet.next();
         
-        long indentifierProvider = resultSet.getLong("indentifier");
+        /********************
+         ** Build provider **
+         ********************/
+        
+        long identifierProvider = resultSet.getLong("identifier");
         String nameProvider = resultSet.getString("name");
         String phoneProvider = resultSet.getString("phone");
         String addressProvider = resultSet.getString("address");
-        provider = new Provider(indentifierProvider, nameProvider, phoneProvider, addressProvider);
+        Provider provider = new Provider(identifierProvider, nameProvider, 
+            phoneProvider, addressProvider);
+        
+        /**********************
+         ** Close connection **
+         **********************/
         
         statement.close();
         closeConnection(connection);
         
         return provider;
     }
-    //cambiar el nombre atributo por otro
+    
     @Override
     public Set<Provider> load(String name) throws SQLException {
-        Provider provider = null;
-        Set<Provider> setProviders = new HashSet<>();
-        Connection connection = getConnection();
+        
+        /******************
+         ** Build script **
+         ******************/
         
         String scriptLoad = "SELECT * FROM provider WHERE name ILIKE '%$name$%';";
         scriptLoad = scriptLoad.replace("$name$", name);
         
+        /********************
+         ** Execute script **
+         ********************/
+        
+        Connection connection = getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(scriptLoad);
-                
+        
+        /********************
+         ** Build set of providers**
+         ********************/
+        
+        Set<Provider> setProviders = new HashSet<>();
         while(resultSet.next()){
-            long indentifierProvider = resultSet.getLong("indentifier");
+            long identifierProvider = resultSet.getLong("identifier");
             String nameProvider = resultSet.getString("name");
             String phoneProvider = resultSet.getString("phone");
             String addressProvider = resultSet.getString("address");
-            provider = new Provider(indentifierProvider, nameProvider, phoneProvider, addressProvider);
+            Provider provider = new Provider(identifierProvider, nameProvider, 
+                phoneProvider, addressProvider);
             setProviders.add(provider);
         }
+        
+        /**********************
+         ** Close connection **
+         **********************/
+        
         statement.close();
         closeConnection(connection);
+        
         return setProviders;
     }
     
     private long nextIdentifierProvider() throws SQLException{
-        long indentifier = 0;
-        Connection connection = getConnection();
+        long identifier = 0;
         
-        String queryString = "SELECT nextval('serial_id_provider')";
-        Statement statement = null;
-        ResultSet resultSet = null;
-        /* Get the next identifier. */
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery(queryString);
+        /******************
+         ** Build script **
+         ******************/
+        
+        String scriptIdentifier = "SELECT nextval('serial_id_provider')";
+        
+        /******************************
+         ** Get the next identifier. **
+         ******************************/
+        
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(scriptIdentifier);
         resultSet.next();
-        indentifier = resultSet.getLong(1);
-        return indentifier;
+        identifier = resultSet.getLong(1);
+        
+        return identifier;
     }
 }

@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-package provider.view;
+package shared.view;
 
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 /**
@@ -25,16 +19,18 @@ public abstract class SwitchJPanel extends javax.swing.JPanel {
     public void setTabs(JTabbedPane tabs){
         this.tabs = tabs;
     }
+    
     public void setSwitchPanel(SwitchJPanel switchPanel){
         this.switchPanel = switchPanel;
     }
     
-    public void switchPanel(){
+    public void swapPanels(){
         int indexTab = tabs.indexOfComponent(this);
         tabs.remove(indexTab);
         tabs.insertTab(switchPanel.getName(), null, switchPanel, null, indexTab);
         tabs.setSelectedIndex(indexTab);
     }
+    
     public abstract void setData(String data);
     /**
      * This method is called from within the constructor to initialize the form.

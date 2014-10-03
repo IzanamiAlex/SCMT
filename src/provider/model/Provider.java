@@ -6,8 +6,6 @@
 
 package provider.model;
 
-import java.sql.Date;
-
 /**
  *
  * @author Izanami
@@ -20,21 +18,21 @@ import java.sql.Date;
 public class Provider {
     
     public Provider() {
-        this.indentifier = 0;
+        this.identifier = 0;
         this.name = null;
         this.phone = null;
         this.address = null;
     }
 
     public Provider(String name, String phone, String address) {
-        this.indentifier = 0;
+        this.identifier = 0;
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
     
-    public Provider(long indentifier, String name, String phone, String address) {
-        this.indentifier = indentifier;
+    public Provider(long identifier, String name, String phone, String address) {
+        this.identifier = identifier;
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -47,7 +45,7 @@ public class Provider {
     
     @Override
     public int hashCode(){
-        return  (int)indentifier;
+        return  (int)identifier;
     }
     /**
      * @return the nameProvider
@@ -73,11 +71,11 @@ public class Provider {
     /**
      * @return the indentifier
      */  
-    public long getIndentifier(){
-        return indentifier;
+    public long getIdentifier(){
+        return identifier;
     }
     
-    private long indentifier;
+    private long identifier;
     private String name;
     private String phone;
     private String address;
