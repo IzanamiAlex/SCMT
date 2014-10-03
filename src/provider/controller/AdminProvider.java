@@ -47,9 +47,12 @@ public class AdminProvider {
         
     }
     
-    public void removerProvider(String identifier){
-        int identifier = 0;
-        
-        identifier = dataProviders.delete();
+    public void removeProvider(String identifier){
+        try {
+            Provider provider = dataProviders.find(identifier);
+            dataProviders.delete(provider);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminProvider.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

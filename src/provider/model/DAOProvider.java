@@ -46,18 +46,17 @@ public class DAOProvider extends AbstractDAO<Provider>{
 
     @Override
     public int delete(Provider provider) throws SQLException {
+        int numRowsModify=0;
         Connection connection = getConnection();
-        long indentifier = nextIdentifierProvider();
         
         String scriptDelete = "DELETE FROM provider WHERE indentifier = $indentifier$";
         scriptDelete = scriptDelete.replace("$indentifier$", Long.toString(provider.getIndentifier()));
         
         Statement statement = connection.createStatement();
-        statement.executeUpdate(scriptDelete);
+        numRowsModify=statement.executeUpdate(scriptDelete);
         statement.close();
         closeConnection(connection);
-        return (int)indentifier;
-        
+        return numRowsModify;
     }
 
     @Override
@@ -71,18 +70,17 @@ public class DAOProvider extends AbstractDAO<Provider>{
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(scriptFind);
         resultSet.next();
+        
         long indentifierProvider = resultSet.getLong("indentifier");
         String nameProvider = resultSet.getString("name");
         String phoneProvider = resultSet.getString("phone");
         String addressProvider = resultSet.getString("address");
-        while(resultSet.next()){
-            return provider = new Provider(resultSet.getLong("indentifier"), 
-                    resultSet.getString("name"), resultSet.getString("phone"),resultSet.getString("address"));
-        }
+        provider = new Provider(indentifierProvider, nameProvider, phoneProvider, addressProvider);
+        
         statement.close();
         closeConnection(connection);
         
-        return null;
+        return provider;
     }
 
     @Override
