@@ -6,12 +6,15 @@
 
 package laucher;
 
+import provider.controller.AdminProvider;
+import provider.model.DAOProvider;
+import provider.view.ViewProvider;
+
 /**
  *
  * @author Izanami
  */
 public class Laucher extends javax.swing.JFrame {
-
     /**
      * Creates new form Laucher
      */
@@ -82,7 +85,11 @@ public class Laucher extends javax.swing.JFrame {
 
     private void providerModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerModuleButtonActionPerformed
         // TODO add your handling code here:
-        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewProvider(new AdminProvider(new DAOProvider())).setVisible(true);
+            }
+        });
     }//GEN-LAST:event_providerModuleButtonActionPerformed
 
     /**

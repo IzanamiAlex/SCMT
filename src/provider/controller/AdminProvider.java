@@ -48,6 +48,8 @@ public class AdminProvider {
     }
     
     public void removerProvider(String identifier){
+        int identifier = 0;
         
+        identifier = dataProviders.delete();
     }
 }

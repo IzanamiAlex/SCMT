@@ -18,17 +18,26 @@ import java.sql.Date;
  */
 
 public class Provider {
+    private long indentifier;
     private String name;
     private String phone;
     private String address;
 
     public Provider() {
+        this.indentifier = 0;
         name=null;
         phone=null;
         address=null;
     }
 
     public Provider(String name, String phone, String address) {
+        this.indentifier = 0;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+    }
+    public Provider(long indentifier, String name, String phone, String address) {
+        this.indentifier = indentifier;
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -64,5 +73,8 @@ public class Provider {
      */
     public String getAddres() {
         return address;
+    }
+    public long getIndentifier(){
+        return indentifier;
     }
 }

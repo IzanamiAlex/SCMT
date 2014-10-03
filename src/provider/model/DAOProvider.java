@@ -24,7 +24,7 @@ public class DAOProvider extends AbstractDAO<Provider>{
         Connection con = getConnection();
         
         String scriptStore = "INSERT INTO provider(indentifier, name, phone, address) "
-            + "VALUES ($indentifier$, $name$, $phone$, $address$);";
+            + "VALUES ($indentifier$, '$name$', '$phone$', '$address$');";
         long indentifier = nextIdentifierProvider();
         scriptStore = scriptStore.replace("$indentifier$", Long.toString(indentifier));
         scriptStore = scriptStore.replace("$name$", provider.getName());
@@ -45,13 +45,44 @@ public class DAOProvider extends AbstractDAO<Provider>{
     }
 
     @Override
-    public int delete(Provider entity) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int delete(Provider provider) throws SQLException {
+        Connection connection = getConnection();
+        long indentifier = nextIdentifierProvider();
+        
+        String scriptDelete = "DELETE FROM provider WHERE indentifier = $indentifier$";
+        scriptDelete = scriptDelete.replace("$indentifier$", Long.toString(provider.getIndentifier()));
+        
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(scriptDelete);
+        statement.close();
+        closeConnection(connection);
+        return (int)indentifier;
+        
     }
 
     @Override
-    public Provider find(String identifier) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Provider find(String indentifier) throws SQLException {
+        Provider provider;
+        Connection connection = getConnection();
+        
+        String scriptFind = "SELECT * FROM provider WHERE identifier = $indentifier$";
+        scriptFind = scriptFind.replace("$indentifier$", indentifier);
+        
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(scriptFind);
+        resultSet.next();
+        long indentifierProvider = resultSet.getLong("indentifier");
+        String nameProvider = resultSet.getString("name");
+        String phoneProvider = resultSet.getString("phone");
+        String addressProvider = resultSet.getString("address");
+        while(resultSet.next()){
+            return provider = new Provider(resultSet.getLong("indentifier"), 
+                    resultSet.getString("name"), resultSet.getString("phone"),resultSet.getString("address"));
+        }
+        statement.close();
+        closeConnection(connection);
+        
+        return null;
     }
 
     @Override
