@@ -6,16 +6,15 @@
 
 package provider.view;
 
+import java.util.Map;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import provider.controller.AdminProvider;
 
 /**
  *
  * @author Izanami
  */
-public class ViewRemoveProviderPanel extends javax.swing.JPanel {
+public class ViewRemoveProviderPanel extends SwitchJPanel {
 
     /**
      * Creates new form ViewRemoveProviderPanel
@@ -23,21 +22,21 @@ public class ViewRemoveProviderPanel extends javax.swing.JPanel {
     public ViewRemoveProviderPanel() {
         initComponents();
         this.adminProvider = null;
-        this.tabs = null;
-        this.panel = null;
+        this.dataProvider = null;
     }
 
     public ViewRemoveProviderPanel(AdminProvider adminProvider) {
         initComponents();
         this.adminProvider = adminProvider;
-        this.tabs = null;
-        this.panel = null;
+        this.dataProvider = null;
     }
-    public ViewRemoveProviderPanel(AdminProvider adminProvider,JTabbedPane tabs, JPanel panel) {
-        initComponents();
-        this.adminProvider = adminProvider;
-        this.tabs = tabs;
-        this.panel = panel;
+    
+    @Override
+    public void setData(String indentificador) {
+        dataProvider = adminProvider.locateProvider(indentificador);
+        nameTextField.setText(dataProvider.get("name"));
+        phoneTextField.setText(dataProvider.get("phone"));
+        addressTextField.setText(dataProvider.get("address"));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,6 +84,11 @@ public class ViewRemoveProviderPanel extends javax.swing.JPanel {
         });
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,12 +148,18 @@ public class ViewRemoveProviderPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProviderButtonActionPerformed
-        String nameProvider = nameTextField.getText();
-        String addressProvider = addressTextField.getText();
-        String phoneProvider = phoneTextField.getText();
-        int identifierProvider=adminProvider.addProvider(nameProvider, addressProvider, phoneProvider);
-        JOptionPane.showMessageDialog(null, "Se ha creado el proveedor numero "+identifierProvider+".");
+        String indentifierProvider=dataProvider.get("indentifier");
+        System.out.println(indentifierProvider);
+        adminProvider.removeProvider(indentifierProvider);
+        JOptionPane.showMessageDialog(null, "Se ha eliminado el proveedor numero "+indentifierProvider+".");
+        switchPanel();
+        switchPanel.setData(null);
     }//GEN-LAST:event_removeProviderButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        switchPanel();
+        switchPanel.setData(null);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -166,6 +176,5 @@ public class ViewRemoveProviderPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;
-    private JTabbedPane tabs;
-    private JPanel panel;
+    private Map<String,String> dataProvider;
 }

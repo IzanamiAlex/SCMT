@@ -13,7 +13,7 @@ import javax.swing.JTabbedPane;
  *
  * @author Izanami
  */
-public class SwitchJPanel extends javax.swing.JPanel {
+public abstract class SwitchJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SwitchJPanel
@@ -25,18 +25,17 @@ public class SwitchJPanel extends javax.swing.JPanel {
     public void setTabs(JTabbedPane tabs){
         this.tabs = tabs;
     }
-    public void setSwitchPanel(SwitchJPanel panel){
-        this.panel = panel;
+    public void setSwitchPanel(SwitchJPanel switchPanel){
+        this.switchPanel = switchPanel;
     }
     
     public void switchPanel(){
         int indexTab = tabs.indexOfComponent(this);
         tabs.remove(indexTab);
-        tabs.insertTab(panel.getName(), null, panel, null, indexTab);
+        tabs.insertTab(switchPanel.getName(), null, switchPanel, null, indexTab);
+        tabs.setSelectedIndex(indexTab);
     }
-    public void setData(int data){
-        panel.data=data;
-    }
+    public abstract void setData(String data);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +62,5 @@ public class SwitchJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private JTabbedPane tabs;
-    private SwitchJPanel panel;
-    
-    private int data;
+    protected SwitchJPanel switchPanel;
 }

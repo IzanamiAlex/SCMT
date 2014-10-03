@@ -122,8 +122,8 @@ public class ViewAddProviderPanel extends javax.swing.JPanel {
         String nameProvider = nameTextField.getText();
         String addressProvider = addressTextField.getText();
         String phoneProvider = phoneTextField.getText();
-        int identifierProvider=adminProvider.addProvider(nameProvider, addressProvider, phoneProvider);
-        JOptionPane.showMessageDialog(null, "Se ha creado el proveedor numero "+identifierProvider+".");
+        int indentifierProvider=adminProvider.addProvider(nameProvider, addressProvider, phoneProvider);
+        JOptionPane.showMessageDialog(null, "Se ha creado el proveedor numero "+indentifierProvider+".");
     }//GEN-LAST:event_createProviderButtonActionPerformed
 
 

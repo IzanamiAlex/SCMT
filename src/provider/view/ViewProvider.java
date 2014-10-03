@@ -106,14 +106,23 @@ public class ViewProvider extends javax.swing.JFrame {
         
         modifyProviderTable.setTabs(tabs);
         modifyProviderTable.setSwitchPanel(modifyProvider);
+        modifyProviderTable.setName("Modificar proveedor");
         
         modifyProvider.setTabs(tabs);
         modifyProvider.setSwitchPanel(modifyProviderTable);
+        modifyProvider.setName("Modificar proveedor");
         
-        removeProvider = new ViewRemoveProviderPanel(adminProvider);
         removeProviderTable = new ViewRemoveProviderTablePanel(adminProvider);
+        removeProvider = new ViewRemoveProviderPanel(adminProvider);
         
+        removeProviderTable.setTabs(tabs);
+        removeProviderTable.setSwitchPanel(removeProvider);
+        removeProviderTable.setName("Eliminar proveedor");
         
+        removeProvider.setTabs(tabs);
+        removeProvider.setSwitchPanel(removeProviderTable);
+        removeProvider.setName("Eliminar proveedor");
+                
         tabs.addTab("Agregar proveedor",addProvider);
         tabs.setMnemonicAt(0, KeyEvent.VK_1);
         tabs.addTab("Modificar proveedor",modifyProviderTable);

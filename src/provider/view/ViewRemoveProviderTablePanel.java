@@ -6,15 +6,13 @@
 
 package provider.view;
 
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import provider.controller.AdminProvider;
 
 /**
  *
  * @author Izanami
  */
-public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
+public class ViewRemoveProviderTablePanel extends SwitchJPanel {
 
     /**
      * Creates new form ViewRemoveProviderTablePanel
@@ -22,22 +20,24 @@ public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
     public ViewRemoveProviderTablePanel() {
         initComponents();
         this.adminProvider = null;
-        this.tabs = null;
-        this.panel = null;
     }
 
     public ViewRemoveProviderTablePanel(AdminProvider adminProvider) {
         initComponents();
         this.adminProvider = adminProvider;
-        this.tabs = null;
-        this.panel = null;
     }
     
-    public ViewRemoveProviderTablePanel(AdminProvider adminProvider,JTabbedPane tabs, JPanel panel) {
-        initComponents();
-        this.adminProvider = adminProvider;
-        this.tabs = tabs;
-        this.panel = panel;
+    @Override
+    public void setData(String data) {
+        String nameProvider=nameProviderTextField.getText();
+        Object listProvider[][]=adminProvider.getProviderList(nameProvider);
+        System.out.print(listProvider.length==0);
+        removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
+            listProvider,
+            new String [] {
+                "Número", "Proveedor"
+            }
+        ));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +53,7 @@ public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
         nameProviderTextField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        removeProviderButton = new javax.swing.JButton();
 
         removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,8 +74,8 @@ public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
         jScrollPane5.setViewportView(removeProviderTable);
 
         nameProviderTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nameProviderTextFieldKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameProviderTextFieldKeyReleased(evt);
             }
         });
 
@@ -84,7 +84,12 @@ public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Eliminar Proveedor");
 
-        jButton5.setText("Aceptar");
+        removeProviderButton.setText("Aceptar");
+        removeProviderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeProviderButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,7 +107,7 @@ public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(67, 67, 67)
                             .addComponent(jLabel15))
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
@@ -117,35 +122,39 @@ public class ViewRemoveProviderTablePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(removeProviderButton)
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameProviderTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProviderTextFieldKeyTyped
-        // TODO add your handling code here:
+    private void removeProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProviderButtonActionPerformed
+        int selectedRow = removeProviderTable.getSelectedRow();
+        Object identifier = removeProviderTable.getValueAt(selectedRow, 0);
+        switchPanel();
+        switchPanel.setData(identifier.toString());
+    }//GEN-LAST:event_removeProviderButtonActionPerformed
+
+    private void nameProviderTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProviderTextFieldKeyReleased
         String nameProvider=nameProviderTextField.getText();
         Object listProvider[][]=adminProvider.getProviderList(nameProvider);
+        System.out.print(listProvider.length==0);
         removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             listProvider,
             new String [] {
                 "Número", "Proveedor"
             }
         ));
-        
-    }//GEN-LAST:event_nameProviderTextFieldKeyTyped
+    }//GEN-LAST:event_nameProviderTextFieldKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField nameProviderTextField;
+    private javax.swing.JButton removeProviderButton;
     private javax.swing.JTable removeProviderTable;
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;
-    private JTabbedPane tabs;
-    private JPanel panel;
 }

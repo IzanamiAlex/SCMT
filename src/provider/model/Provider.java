@@ -48,6 +48,10 @@ public class Provider {
         return name;
     }
 
+    @Override
+    public int hashCode(){
+        return  (int)indentifier;
+    }
     /**
      * @return the nameProvider
      */

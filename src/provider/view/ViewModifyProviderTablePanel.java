@@ -6,8 +6,6 @@
 
 package provider.view;
 
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import provider.controller.AdminProvider;
 
 /**
@@ -22,21 +20,16 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
     public ViewModifyProviderTablePanel() {
         initComponents();
         this.adminProvider = null;
-        this.tabs = null;
-        this.panel = null;
     }
     
     public ViewModifyProviderTablePanel(AdminProvider adminProvider) {
         initComponents();
         this.adminProvider = adminProvider;
-        this.tabs = null;
-        this.panel = null;
     }
-    public void setTabs(JTabbedPane tabs){
-        this.tabs = tabs;
-    }
-    public void setSwitchPanel(JPanel panel){
-        this.panel = panel;
+    
+    @Override
+    public void setData(String data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -147,7 +140,6 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameProviderTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProviderTextFieldKeyTyped
-        // TODO add your handling code here:
         String nameProvider=nameProviderTextField.getText();
         Object listProvider[][]=adminProvider.getProviderList(nameProvider);
         modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -159,11 +151,10 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
     }//GEN-LAST:event_nameProviderTextFieldKeyTyped
 
     private void modifyProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProviderButtonActionPerformed
-        // TODO add your handling code here:
         int selectedRow = modifyProviderTable.getSelectedRow();
         Object identifier = modifyProviderTable.getValueAt(selectedRow, 0);
         switchPanel();
-        setData((Integer)identifier);
+        //setData((Long)identifier);
     }//GEN-LAST:event_modifyProviderButtonActionPerformed
 
 
@@ -178,6 +169,4 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;
-    private JTabbedPane tabs;
-    private JPanel panel;
 }

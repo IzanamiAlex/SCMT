@@ -7,8 +7,6 @@
 package provider.view;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import provider.controller.AdminProvider;
 
 /**
@@ -27,6 +25,11 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
     public ViewModifyProviderPanel(AdminProvider adminProvider) {
         initComponents();
         this.adminProvider=adminProvider;
+    }
+    
+    @Override
+    public void setData(String data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     /**
@@ -152,5 +155,4 @@ public class ViewModifyProviderPanel extends SwitchJPanel {
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;
-    
 }
