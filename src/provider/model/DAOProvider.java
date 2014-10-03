@@ -23,7 +23,10 @@ public class DAOProvider extends AbstractDAO<Provider>{
     
     @Override
     public int store(Provider provider) throws SQLException {
-        Connection con = getConnection();
+        
+        /******************
+         ** Build script **
+         ******************/
         
         String scriptStore = "INSERT INTO provider(indentifier, name, phone, address) "
             + "VALUES ($indentifier$, '$name$', '$phone$', '$address$');";
@@ -33,42 +36,60 @@ public class DAOProvider extends AbstractDAO<Provider>{
         scriptStore = scriptStore.replace("$phone$", provider.getPhone());
         scriptStore = scriptStore.replace("$address$", provider.getAddres());
         
-        Statement sentencia = con.createStatement();
-        sentencia.executeUpdate(scriptStore);
-        sentencia.close();
-        closeConnection(con);
+        /********************
+         ** Execute script **
+         ********************/
+        
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(scriptStore);
+        statement.close();
+        closeConnection(connection);
+        
         return (int)indentifier;
     }
 
     @Override
     public int update(Provider provider) throws SQLException {
-        Connection con = getConnection();
+        
+        /******************
+         ** Build script **
+         ******************/
         
         String scriptUpdate = "UPDATE provider\n" +
             "   SET  name = '$name$', phone = '$phone$', address = '$address$'\n" +
             " WHERE indentifier = $indentifier$;";
-        scriptUpdate = scriptUpdate.replace("$indentifier$", Long.toString(provider.getIndentifier()));
+        scriptUpdate = scriptUpdate.replace("$indentifier$", 
+            Long.toString(provider.getIndentifier()));
         scriptUpdate = scriptUpdate.replace("$name$", provider.getName());
         scriptUpdate = scriptUpdate.replace("$phone$", provider.getPhone());
         scriptUpdate = scriptUpdate.replace("$address$", provider.getAddres());
-        try {
-            PreparedStatement pstm = con.prepareStatement(scriptUpdate);
-            pstm.execute();
-            pstm.close();
-         }catch(SQLException e){
-            System.out.println(e);
-        }
+        
+        /********************
+         ** Execute script **
+         ********************/
+        
+        Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(scriptUpdate);
+        statement.execute();
+        statement.close();
+         
         return (int) provider.getIndentifier();
     }
 
     @Override
     public int delete(Provider provider) throws SQLException {
-        int numRowsModify=0;
-        Connection connection = getConnection();
+        int numRowsModify = 0;
+        
+        /******************
+         ** Build script **
+         ******************/
         
         String scriptDelete = "DELETE FROM provider WHERE indentifier = $indentifier$";
-        scriptDelete = scriptDelete.replace("$indentifier$", Long.toString(provider.getIndentifier()));
+        scriptDelete = scriptDelete.replace("$indentifier$", 
+                Long.toString(provider.getIndentifier()));
         
+        Connection connection = getConnection();
         Statement statement = connection.createStatement();
         numRowsModify=statement.executeUpdate(scriptDelete);
         statement.close();

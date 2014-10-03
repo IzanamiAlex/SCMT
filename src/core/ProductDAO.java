@@ -7,7 +7,6 @@
 package core;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Set;
@@ -20,13 +19,25 @@ public class ProductDAO extends AbstractDAO<Product>{
 
     @Override
     public int store(Product product) throws SQLException {
-        int numRows = 0;
-        Connection connection = getConnection();
+        int numRowsModif = 0;
         
-        String orden = "INSERT INTO product (barcode, nameProduct,description,priceUnit) VALUES ( '" +
-                product.getBarcode()+"' "+ ",'" + product.getNameProduct() + "' "+ ",'" + 
-                product.getDescription()+ "' " + ",'" + product.getPrecioUnit()+ "' "+ ")";
-        return numRows;
+        
+        
+        String scriptStore = "INSERT INTO product(barcode, description, sales_unit, price, deparment) " +
+            "VALUES ($barcode$, $description$, $sales_unit$, $price$, $deparment$);";
+        scriptStore = scriptStore.replace("$barcode$", Long.toString(product.getBarcode()));
+        scriptStore = scriptStore.replace("$description$", product.getDescription());
+        scriptStore = scriptStore.replace("$sales_unit$", product.getSalesUnit());
+        scriptStore = scriptStore.replace("$price$", Double.toString(product.getPriceUnit()));
+        scriptStore = scriptStore.replace("$deparment$", product.getDepartament());
+        
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        numRowsModif = statement.executeUpdate(scriptStore);
+        statement.close();
+        closeConnection(connection);
+        
+        return numRowsModif;
     }
 
     @Override

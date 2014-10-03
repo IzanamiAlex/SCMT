@@ -135,7 +135,7 @@ public class ViewProvider extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private AdminProvider adminProvider;
-    private JPanel addProvider;
+    private ViewAddProviderPanel addProvider;
     private ViewModifyProviderTablePanel modifyProviderTable;
     private ViewModifyProviderPanel modifyProvider;
     private ViewRemoveProviderTablePanel removeProviderTable;

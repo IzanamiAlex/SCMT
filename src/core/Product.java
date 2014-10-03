@@ -12,18 +12,17 @@ package core;
  */
 public class Product {
     private long barcode;
-    private String nameProduct;
     private String description;
     private double priceUnit;
+    private String salesUnit;
+    private String departament;
 
-    public Product(long barcode, 
-            String nameProduct, 
-            String description, 
-            double priceUnit) {
+    public Product(long barcode, String description, double priceUnit, String salesUnit, String departament) {
         this.barcode = barcode;
-        this.nameProduct = nameProduct;
         this.description = description;
         this.priceUnit = priceUnit;
+        this.salesUnit = salesUnit;
+        this.departament = departament;
     }
 
     /**
@@ -34,13 +33,6 @@ public class Product {
     }
 
     /**
-     * @return the nameProduct
-     */
-    public String getNameProduct() {
-        return nameProduct;
-    }
-
-    /**
      * @return the description
      */
     public String getDescription() {
@@ -48,17 +40,24 @@ public class Product {
     }
 
     /**
-     * @return the precioUnit
+     * @return the priceUnit
      */
-    public double getPrecioUnit() {
+    public double getPriceUnit() {
         return priceUnit;
     }
 
     /**
-     * @param precioUnit the precioUnit to set
+     * @return the salesUnit
      */
-    public void setPrecioUnit(double precioUnit) {
-        this.priceUnit = precioUnit;
+    public String getSalesUnit() {
+        return salesUnit;
+    }
+
+    /**
+     * @return the departament
+     */
+    public String getDepartament() {
+        return departament;
     }
     
     
