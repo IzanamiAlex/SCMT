@@ -101,7 +101,7 @@
         </Container>
         <Component class="javax.swing.JTextField" name="nameProviderTextField">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameProviderTextFieldKeyTyped"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameProviderTextFieldKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">

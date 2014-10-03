@@ -45,7 +45,7 @@ public class DAOProvider extends AbstractDAO<Provider>{
         Connection con = getConnection();
         
         String scriptUpdate = "UPDATE provider\n" +
-            "   SET  name = $name$, phone = $phone$, address = $address$\n" +
+            "   SET  name = '$name$', phone = '$phone$', address = '$address$'\n" +
             " WHERE indentifier = $indentifier$;";
         scriptUpdate = scriptUpdate.replace("$indentifier$", Long.toString(provider.getIndentifier()));
         scriptUpdate = scriptUpdate.replace("$name$", provider.getName());
@@ -111,18 +111,14 @@ public class DAOProvider extends AbstractDAO<Provider>{
         
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(scriptLoad);
-        
-        System.out.print(scriptLoad);
-        
+                
         while(resultSet.next()){
-            System.out.print("hola2 ");
             long indentifierProvider = resultSet.getLong("indentifier");
             String nameProvider = resultSet.getString("name");
             String phoneProvider = resultSet.getString("phone");
             String addressProvider = resultSet.getString("address");
             provider = new Provider(indentifierProvider, nameProvider, phoneProvider, addressProvider);
             setProviders.add(provider);
-            System.out.print(provider);
         }
         statement.close();
         closeConnection(connection);

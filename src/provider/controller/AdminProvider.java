@@ -74,8 +74,13 @@ public class AdminProvider {
         return indentifier; 
     }
     
-    public void modifyProvider(String identifier, String name,String address, String phone){
-        
+    public void modifyProvider(String indentifier, String name,String address, String phone){
+        try {
+            Provider provider = new Provider(Long.valueOf(indentifier), name, phone, address);
+            daoProviders.update(provider);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminProvider.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void removeProvider(String identifier){

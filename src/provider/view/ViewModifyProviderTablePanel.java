@@ -29,7 +29,15 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
     
     @Override
     public void setData(String data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String nameProvider=nameProviderTextField.getText();
+        Object listProvider[][]=adminProvider.getProviderList(nameProvider);
+        System.out.print(listProvider.length==0);
+        modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
+            listProvider,
+            new String [] {
+                "Número", "Proveedor"
+            }
+        ));
     }
 
     /**
@@ -70,8 +78,8 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
         jScrollPane3.setViewportView(modifyProviderTable);
 
         nameProviderTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nameProviderTextFieldKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameProviderTextFieldKeyReleased(evt);
             }
         });
 
@@ -139,23 +147,24 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameProviderTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProviderTextFieldKeyTyped
+    private void modifyProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProviderButtonActionPerformed
+        int selectedRow = modifyProviderTable.getSelectedRow();
+        Object indentifier = modifyProviderTable.getValueAt(selectedRow, 0);
+        switchPanel();
+        switchPanel.setData(indentifier.toString());
+    }//GEN-LAST:event_modifyProviderButtonActionPerformed
+
+    private void nameProviderTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProviderTextFieldKeyReleased
         String nameProvider=nameProviderTextField.getText();
         Object listProvider[][]=adminProvider.getProviderList(nameProvider);
+        System.out.print(listProvider.length==0);
         modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             listProvider,
             new String [] {
                 "Número", "Proveedor"
             }
         ));
-    }//GEN-LAST:event_nameProviderTextFieldKeyTyped
-
-    private void modifyProviderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProviderButtonActionPerformed
-        int selectedRow = modifyProviderTable.getSelectedRow();
-        Object identifier = modifyProviderTable.getValueAt(selectedRow, 0);
-        switchPanel();
-        //setData((Long)identifier);
-    }//GEN-LAST:event_modifyProviderButtonActionPerformed
+    }//GEN-LAST:event_nameProviderTextFieldKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
