@@ -106,8 +106,8 @@ public class DAOProvider extends AbstractDAO<Provider>{
         Set<Provider> setProviders = new HashSet<>();
         Connection connection = getConnection();
         
-        String scriptLoad = "SELECT * FROM provider WHERE name ILIKE '$atributo$';";
-        scriptLoad = scriptLoad.replace("$atributo$", name);
+        String scriptLoad = "SELECT * FROM provider WHERE name ILIKE '%$name$%';";
+        scriptLoad = scriptLoad.replace("$name$", name);
         
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(scriptLoad);
