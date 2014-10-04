@@ -17,7 +17,11 @@ public class Product {
     private String salesUnit;
     private String departament;
 
-    public Product(long barcode, String description, double priceUnit, String salesUnit, String departament) {
+    public Product(long barcode, 
+            String description, 
+            double priceUnit, 
+            String salesUnit, 
+            String departament) {
         this.barcode = barcode;
         this.description = description;
         this.priceUnit = priceUnit;
