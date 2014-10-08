@@ -35,86 +35,115 @@ public class ViewAddProviderPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         addressTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
+        phoneLabel = new javax.swing.JLabel();
         phoneTextField = new javax.swing.JTextField();
         createProviderButton = new javax.swing.JButton();
+        moduleNameLabel = new javax.swing.JLabel();
 
-        jLabel5.setText("NUEVO PROVEEDOR");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
-        jLabel6.setText("- Llene la siguiente informacion acerca del nuevo proveedor");
+        titleLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 153, 0));
+        titleLabel.setText("NUEVO PROVEEDOR");
 
-        jLabel1.setText("Nombre:");
+        descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        descriptionLabel.setForeground(new java.awt.Color(0, 102, 0));
+        descriptionLabel.setText("- Llene la siguiente informacion acerca del nuevo proveedor:");
 
-        jLabel2.setText("Dirección");
+        nameLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nameLabel.setText("Nombre:");
 
-        jLabel3.setText("Telefono");
+        nameTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
+        nameTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
+        addressTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
+        addressTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
+        addressLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        addressLabel.setText("Dirección");
+
+        phoneLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        phoneLabel.setText("Telefono");
+
+        phoneTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
+        phoneTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
+        createProviderButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         createProviderButton.setText("Crear Proveedor");
+        createProviderButton.setPreferredSize(new java.awt.Dimension(150, 30));
         createProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createProvider(evt);
             }
         });
 
+        moduleNameLabel.setBackground(new java.awt.Color(0, 153, 51));
+        moduleNameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        moduleNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        moduleNameLabel.setText("    PROVEEDORES");
+        moduleNameLabel.setOpaque(true);
+        moduleNameLabel.setPreferredSize(new java.awt.Dimension(600, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addressLabel)
+                            .addComponent(nameLabel)
+                            .addComponent(phoneLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(68, 68, 68)
-                                        .addComponent(createProviderButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameTextField)
-                                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                            .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(createProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titleLabel)
+                            .addComponent(descriptionLabel))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel5)
+                .addGap(20, 20, 20)
+                .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(createProviderButton)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(descriptionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addressLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneLabel))))
+                .addGap(18, 18, 18)
+                .addComponent(createProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,15 +160,16 @@ public class ViewAddProviderPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTextField;
     private javax.swing.JButton createProviderButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JLabel moduleNameLabel;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;

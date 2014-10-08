@@ -33,8 +33,8 @@ public class ViewRemoveProviderPanel extends SwitchJPanel {
     }
     
     @Override
-    public void setData(String identificador) {
-        dataProvider = adminProvider.getDataProvider(identificador);
+    public void setData(String identifier) {
+        dataProvider = adminProvider.getDataProvider(identifier);
         nameTextField.setText(dataProvider.get("name"));
         phoneTextField.setText(dataProvider.get("phone"));
         addressTextField.setText(dataProvider.get("address"));
@@ -48,103 +48,140 @@ public class ViewRemoveProviderPanel extends SwitchJPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
         addressTextField = new javax.swing.JTextField();
         phoneTextField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        phoneLabel = new javax.swing.JLabel();
         removeProviderButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        moduleNameLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
-        jLabel5.setText("ELIMINAR PROVEEDOR");
+        titleLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 153, 0));
+        titleLabel.setText("ELIMINAR PROVEEDOR");
 
-        jLabel6.setText("Verifique que sea el proveedor que quiere eliminar.");
+        descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        descriptionLabel.setForeground(new java.awt.Color(0, 102, 0));
+        descriptionLabel.setText("- Verifique que sea el proveedor que quiere eliminar.");
 
-        jLabel1.setText("Nombre:");
+        nameLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nameLabel.setText("Nombre:");
 
         nameTextField.setEditable(false);
+        nameTextField.setBackground(new java.awt.Color(204, 255, 204));
+        nameTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nameTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 205, 51)));
+        nameTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
-        jLabel2.setText("Dirección");
+        addressLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        addressLabel.setText("Dirección");
 
         addressTextField.setEditable(false);
+        addressTextField.setBackground(new java.awt.Color(204, 255, 204));
+        addressTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        addressTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 205, 51)));
+        addressTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
         phoneTextField.setEditable(false);
+        phoneTextField.setBackground(new java.awt.Color(204, 255, 204));
+        phoneTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        phoneTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 205, 51)));
+        phoneTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
-        jLabel3.setText("Telefono");
+        phoneLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        phoneLabel.setText("Telefono");
 
+        removeProviderButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         removeProviderButton.setText("Elminar Proveedor");
+        removeProviderButton.setPreferredSize(new java.awt.Dimension(150, 30));
         removeProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeProvider(evt);
             }
         });
 
+        cancelButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(153, 0, 0));
         cancelButton.setText("Cancelar");
+        cancelButton.setPreferredSize(new java.awt.Dimension(150, 30));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelRemoveProvider(evt);
             }
         });
 
+        moduleNameLabel.setBackground(new java.awt.Color(0, 153, 51));
+        moduleNameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        moduleNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        moduleNameLabel.setText("    PROVEEDORES");
+        moduleNameLabel.setOpaque(true);
+        moduleNameLabel.setPreferredSize(new java.awt.Dimension(600, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descriptionLabel)
+                    .addComponent(titleLabel)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
+                        .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(phoneLabel)
+                                .addComponent(addressLabel))
+                            .addComponent(nameLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameTextField)
-                                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(removeProviderButton)
-                                .addGap(45, 45, 45)
-                                .addComponent(cancelButton)))))
+                                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel5)
+                .addGap(20, 20, 20)
+                .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(descriptionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addressLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeProviderButton)
-                    .addComponent(cancelButton))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneLabel))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,16 +203,17 @@ public class ViewRemoveProviderPanel extends SwitchJPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTextField;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JLabel moduleNameLabel;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JButton removeProviderButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;

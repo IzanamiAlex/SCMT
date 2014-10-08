@@ -11,12 +11,7 @@ package shared.model;
  * @author Izanami
  */
 public class Product {
-    private long barcode;
-    private String description;
-    private double priceUnit;
-    private String salesUnit;
-    private String departament;
-
+    
     public Product(long barcode, 
             String description, 
             double priceUnit, 
@@ -64,5 +59,10 @@ public class Product {
         return departament;
     }
     
+    private long barcode;
+    private String description;
+    private double priceUnit;
+    private String salesUnit;
+    private String departament;
     
 }

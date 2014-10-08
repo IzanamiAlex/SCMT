@@ -53,12 +53,16 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         modifyProviderTable = new javax.swing.JTable();
         nameProviderTextField = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         modifyProviderButton = new javax.swing.JButton();
+        moduleNameLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setName("Modificar proveedor"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
+        modifyProviderTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -77,21 +81,27 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
         ));
         jScrollPane3.setViewportView(modifyProviderTable);
 
+        nameProviderTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        nameProviderTextField.setPreferredSize(new java.awt.Dimension(288, 25));
         nameProviderTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 updateTable(evt);
             }
         });
 
-        jLabel12.setText("Teclee el nombre del proveedor:");
+        descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        descriptionLabel.setForeground(new java.awt.Color(0, 102, 0));
+        descriptionLabel.setText("Teclee el nombre del proveedor:");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("Modificar Proveedor");
+        titleLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 153, 0));
+        titleLabel.setText("Modificar Proveedor");
 
+        modifyProviderButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         modifyProviderButton.setText("Aceptar");
         modifyProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectProveedor(evt);
+                selectProvider(evt);
             }
         });
 
@@ -100,59 +110,73 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jLabel13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(nameProviderTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel12))
-                    .addComponent(modifyProviderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addComponent(modifyProviderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameProviderTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(descriptionLabel))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(titleLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
+                .addComponent(descriptionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameProviderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modifyProviderButton)
+                .addComponent(modifyProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        moduleNameLabel.setBackground(new java.awt.Color(0, 153, 51));
+        moduleNameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        moduleNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        moduleNameLabel.setText("    PROVEEDORES");
+        moduleNameLabel.setOpaque(true);
+        moduleNameLabel.setPreferredSize(new java.awt.Dimension(600, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void selectProveedor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectProveedor
+    private void selectProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectProvider
         int selectedRow = modifyProviderTable.getSelectedRow();
         Object indentifier = modifyProviderTable.getValueAt(selectedRow, 0);
         swapPanels();
         switchPanel.setData(indentifier.toString());
-    }//GEN-LAST:event_selectProveedor
+    }//GEN-LAST:event_selectProvider
 
     private void updateTable(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateTable
         String nameProvider = nameProviderTextField.getText();
@@ -167,13 +191,14 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel descriptionLabel;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton modifyProviderButton;
     private javax.swing.JTable modifyProviderTable;
+    private javax.swing.JLabel moduleNameLabel;
     private javax.swing.JTextField nameProviderTextField;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
     
     private AdminProvider adminProvider;
