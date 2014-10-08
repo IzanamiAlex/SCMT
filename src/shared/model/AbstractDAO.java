@@ -7,11 +7,10 @@ import java.util.Set;
 
 
 public abstract class AbstractDAO<T> {
-    private String host;
-    private String bd;
-    private String login;
-    private String password;
-    private boolean loadedDriver;
+    
+    public AbstractDAO(){
+        this("localhost", "scmt", "postgres", "root","org.postgresql.Driver");
+    }
     
     public AbstractDAO(String host, String bd, String login, String password,String driver) {
         this.host = host;
@@ -20,10 +19,6 @@ public abstract class AbstractDAO<T> {
         this.password = password;
         loadedDriver = false;
         loadDriver(driver);
-    }
-    
-    public AbstractDAO(){
-        this("localhost", "scmt", "postgres", "root","org.postgresql.Driver");
     }
     
     private void loadDriver(String driver){
@@ -57,12 +52,22 @@ public abstract class AbstractDAO<T> {
     }
     
     public abstract int store(T entity)throws SQLException;
+    
     public abstract int update(T entity)throws SQLException;
-    public abstract int delete(T entity)throws SQLException; 
+    
+    public abstract int delete(T entity)throws SQLException;
+    
     public abstract T find(String identifier)throws SQLException;
+    
     public abstract Set<T> load(String condition)throws SQLException;
 
     public final boolean isLoadedDriver() {
         return loadedDriver;
     }
+    
+    private String host;
+    private String bd;
+    private String login;
+    private String password;
+    private boolean loadedDriver;
 }
