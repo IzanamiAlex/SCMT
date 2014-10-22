@@ -3,13 +3,14 @@ package shared.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Set;
 
 
 public abstract class AbstractDAO<T> {
     
     public AbstractDAO(){
-        this("localhost", "scmt", "postgres", "chopper", "org.postgresql.Driver");
+        this("localhost", "scmt", "postgres", "root", "org.postgresql.Driver");
     }
     
     public AbstractDAO(String host, String database, String login, String password,String driver) {
@@ -21,11 +22,23 @@ public abstract class AbstractDAO<T> {
         loadDriver(driver);
     }
     
-    public abstract int store(T entity)throws SQLException;
+    public final int store(T entity)throws SQLException{
+        String scriptStore = buildScriptStore(entity);
+        int numRowsModify = executeScriptUpdateDB(scriptStore);
+        return numRowsModify;
+    }
     
-    public abstract int update(T entity)throws SQLException;
+    public final int update(T entity)throws SQLException{
+        String scriptUpdate = buildScriptStore(entity);
+        int numRowsModify = executeScriptUpdateDB(scriptUpdate);
+        return numRowsModify;
+    }
     
-    public abstract int delete(T entity)throws SQLException; 
+    public final int delete(T entity)throws SQLException{
+        String scriptDelete = buildScriptStore(entity);
+        int numRowsModify = executeScriptUpdateDB(scriptDelete);
+        return numRowsModify;
+    }
     
     public abstract T find(String identifier)throws SQLException;
     
@@ -54,6 +67,12 @@ public abstract class AbstractDAO<T> {
         } catch (SQLException e) { e.printStackTrace(); }
     }
     
+    protected abstract String buildScriptStore(T entity);
+    protected abstract String buildScriptUpdate(T entity);
+    protected abstract String buildScriptDelete(T entity);
+    protected  String buildScriptFind(String indentifier){return null;}
+    protected  String buildScriptLoad(String condition){return null;}
+     
     private void loadDriver(String driver){
         try {
             if ( !loadedDriver ) {
@@ -65,6 +84,16 @@ public abstract class AbstractDAO<T> {
         }
     }
     
+    private int executeScriptUpdateDB(String script) throws SQLException{
+        int numRowsModify = 0;
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        numRowsModify = statement.executeUpdate(script);
+        statement.close();
+        closeConnection(connection);
+        return numRowsModify;
+    }
+          
     private String host;
     private String database;
     private String login;
