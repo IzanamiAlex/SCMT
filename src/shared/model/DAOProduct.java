@@ -61,14 +61,14 @@ public class DAOProduct extends AbstractDAO<Product>{
     }
 
     @Override
-    public Set<Product> load(String barcode) throws SQLException {
+    public Set<Product> load(String description) throws SQLException {
         /******************
          ** Build script **
          ******************/
         //Hay que revisar que el ILIKE funcione, pues
         //solo funciona para texto... !:D
-        String scriptLoad = "SELECT * FROM product WHERE barcode ILIKE '%$barcode$%';";
-        scriptLoad = scriptLoad.replace("$name$", barcode);
+        String scriptLoad = "SELECT * FROM product WHERE description ILIKE '%$description$%';";
+        scriptLoad = scriptLoad.replace("$description$", description);
         
         /********************
          ** Execute script **
@@ -106,13 +106,13 @@ public class DAOProduct extends AbstractDAO<Product>{
     
     @Override
     protected String buildScriptStore(Product product){
-        String scriptStore = "INSERT INTO product(barcode, description, sales_unit, price, deparment) " +
-            "VALUES ($barcode$, $description$, $sales_unit$, $price$, $deparment$);";
+        String scriptStore = "INSERT INTO product(barcode, description, sales_unit, price, departament) " +
+            "VALUES ($barcode$, '$description$', '$sales_unit$', $price$, '$departament$');";
         scriptStore = scriptStore.replace("$barcode$", Long.toString(product.getBarcode()));
         scriptStore = scriptStore.replace("$description$", product.getDescription());
         scriptStore = scriptStore.replace("$sales_unit$", product.getSalesUnit());
         scriptStore = scriptStore.replace("$price$", Double.toString(product.getPriceUnit()));
-        scriptStore = scriptStore.replace("$deparment$", product.getDepartament());
+        scriptStore = scriptStore.replace("$departament$", product.getDepartament());
         return scriptStore;
     }
     
@@ -120,25 +120,25 @@ public class DAOProduct extends AbstractDAO<Product>{
     protected String buildScriptUpdate(Product product){
         
          String scriptUpdate = "UPDATE product\n" +
-            "   SET  description = '$description$', $sales_unit$, $price$, " +
-            "$deparment$'\n WHERE barcode = $barcode$;";
+            "   SET description = '$description$', sales_unit = '$sales_unit$', price=$price$, departament='$departament$'\n" +
+            " WHERE barcode = $barcode$;";
         scriptUpdate = scriptUpdate.replace("$barcode$", 
-            Double.toString(product.getBarcode()));
+            Long.toString(product.getBarcode()));
         
         String price = String.valueOf(product.getPriceUnit());
         scriptUpdate = scriptUpdate.replace("$description$", product.getDescription());
         scriptUpdate = scriptUpdate.replace("$sales_unit$", product.getSalesUnit());
-        scriptUpdate = scriptUpdate.replace("$prices$", price);
-        scriptUpdate = scriptUpdate.replace("$departaments$", product.getDepartament());
+        scriptUpdate = scriptUpdate.replace("$price$", price);
+        scriptUpdate = scriptUpdate.replace("$departament$", product.getDepartament());
         
         return scriptUpdate;
     }
 
     @Override
     protected String buildScriptDelete(Product product){
-        String scriptDelete = "DELETE FROM product WHERE barcode = $identifier$";
-        scriptDelete = scriptDelete.replace("$identifier$", 
-            Double.toString(product.getBarcode()));
+        String scriptDelete = "DELETE FROM product WHERE barcode = $barcode$";
+        scriptDelete = scriptDelete.replace("$barcode$", 
+            Long.toString(product.getBarcode()));
         return scriptDelete;
     }
 }

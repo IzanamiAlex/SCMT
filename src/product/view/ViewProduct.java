@@ -2,30 +2,29 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package provider.view;
+package product.view;
 
 import java.awt.event.KeyEvent;
-import javax.swing.JPanel;
-import provider.controller.AdminProvider;
+import product.controller.AdminProduct;
 
 /**
  *
  * @author BuiRai
  */
-public class ViewProvider extends javax.swing.JFrame {
+public class ViewProduct extends javax.swing.JFrame {
     
     /**
      * Creates new form ViewProvider
      */
-    public ViewProvider() {
+    public ViewProduct() {
         initComponents();
-        this.adminProvider = null;
+        this.adminProduct = null;
         addTabs();
     }
     
-    public ViewProvider(AdminProvider adminProvider) {
+    public ViewProduct(AdminProduct adminProduct) {
         initComponents();
-        this.adminProvider = adminProvider;
+        this.adminProduct = adminProduct;
         addTabs();
     }
     
@@ -82,53 +81,56 @@ public class ViewProvider extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewProvider.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewProvider.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProvider.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewProvider.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewProvider().setVisible(true);
+                new ViewProduct().setVisible(true);
             }
         });
     }
     
     private void addTabs(){
-        addProduct = new ViewAddProviderPanel(adminProvider);
+        addProduct = new ViewAddProductPanel(adminProduct);
         
-        modifyProviderTable = new ViewModifyProviderTablePanel(adminProvider);
-        modifyProvider = new ViewModifyProviderPanel(adminProvider);
+        modifyProductTable = new ViewModifyProductTablePanel(adminProduct);
+        modifyProduct = new ViewModifyProductPanel(adminProduct);
         
-        modifyProviderTable.setTabs(tabs);
-        modifyProviderTable.setSwitchPanel(modifyProvider);
-        modifyProviderTable.setName("Modificar proveedor");
+        modifyProductTable.setTabs(tabs);
+        modifyProductTable.setSwitchPanel(modifyProduct);
+        modifyProductTable.setName("Modificar producto");
         
-        modifyProvider.setTabs(tabs);
-        modifyProvider.setSwitchPanel(modifyProviderTable);
-        modifyProvider.setName("Modificar proveedor");
+        modifyProduct.setTabs(tabs);
+        modifyProduct.setSwitchPanel(modifyProductTable);
+        modifyProduct.setName("Modificar producto");
         
-        removeProviderTable = new ViewRemoveProviderTablePanel(adminProvider);
-        removeProvider = new ViewRemoveProviderPanel(adminProvider);
+        removeProductTable = new ViewRemoveProductTablePanel(adminProduct);
+        removeProduct = new ViewRemoveProductPanel(adminProduct);
         
-        removeProviderTable.setTabs(tabs);
-        removeProviderTable.setSwitchPanel(removeProvider);
-        removeProviderTable.setName("Eliminar proveedor");
+        removeProductTable.setTabs(tabs);
+        removeProductTable.setSwitchPanel(removeProduct);
+        removeProductTable.setName("Eliminar producto");
         
-        removeProvider.setTabs(tabs);
-        removeProvider.setSwitchPanel(removeProviderTable);
-        removeProvider.setName("Eliminar proveedor");
+        removeProduct.setTabs(tabs);
+        removeProduct.setSwitchPanel(removeProductTable);
+        removeProduct.setName("Eliminar producto");
                 
-        tabs.addTab("Agregar proveedor",addProduct);
+        tabs.addTab("Agregar producto",addProduct);
         tabs.setMnemonicAt(0, KeyEvent.VK_1);
-        tabs.addTab("Modificar proveedor",modifyProviderTable);
-        tabs.addTab("Eliminar proveedor",removeProviderTable);
+        tabs.addTab("Modificar producto",modifyProductTable);
+        tabs.addTab("Eliminar producto",removeProductTable);
         pack();
     }
     
@@ -136,10 +138,10 @@ public class ViewProvider extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 
-    private AdminProvider adminProvider;
-    private ViewAddProviderPanel addProduct;
-    private ViewModifyProviderTablePanel modifyProviderTable;
-    private ViewModifyProviderPanel modifyProvider;
-    private ViewRemoveProviderTablePanel removeProviderTable;
-    private ViewRemoveProviderPanel removeProvider;
+    private AdminProduct adminProduct;
+    private ViewAddProductPanel addProduct;
+    private ViewModifyProductTablePanel modifyProductTable;
+    private ViewModifyProductPanel modifyProduct;
+    private ViewRemoveProductTablePanel removeProductTable;
+    private ViewRemoveProductPanel removeProduct;
 }

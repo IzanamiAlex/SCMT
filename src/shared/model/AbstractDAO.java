@@ -29,13 +29,13 @@ public abstract class AbstractDAO<T> {
     }
     
     public final int update(T entity)throws SQLException{
-        String scriptUpdate = buildScriptStore(entity);
+        String scriptUpdate = buildScriptUpdate(entity);
         int numRowsModify = executeScriptUpdateDB(scriptUpdate);
         return numRowsModify;
     }
     
     public final int delete(T entity)throws SQLException{
-        String scriptDelete = buildScriptStore(entity);
+        String scriptDelete = buildScriptDelete(entity);
         int numRowsModify = executeScriptUpdateDB(scriptDelete);
         return numRowsModify;
     }
@@ -54,9 +54,7 @@ public abstract class AbstractDAO<T> {
         try {
             connection = DriverManager.getConnection(urlConnection, login, password);
         }catch (Exception e) {}
-        finally{
-            return connection;
-        } 
+        return connection;
     }
     
     protected final void closeConnection(Connection connection){

@@ -4,39 +4,38 @@
  * and open the template in the editor.
  */
 
-package provider.view;
+package product.view;
 
 import product.controller.AdminProduct;
-import provider.controller.AdminProvider;
 import shared.view.SwitchJPanel;
 
 /**
  *
  * @author Izanami
  */
-public class ViewModifyProviderTablePanel extends SwitchJPanel {
+public class ViewModifyProductTablePanel extends SwitchJPanel {
 
     /**
      * Creates new form ViewModifyProviderTablePanel
      */
-    public ViewModifyProviderTablePanel() {
+    public ViewModifyProductTablePanel() {
         initComponents();
-        this.adminProvider = null;
+        this.adminProduct = null;
     }
     
-    public ViewModifyProviderTablePanel(AdminProvider adminProvider) {
+    public ViewModifyProductTablePanel(AdminProduct adminProduct) {
         initComponents();
-        this.adminProvider = adminProvider;
+        this.adminProduct = adminProduct;
     }
     
     @Override
     public void setData(String data) {
-        String nameProduct = nameProviderTextField.getText();
-        Object listProvider[][] = adminProvider.getProviderList(nameProduct);
-        modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
-            listProvider,
+        String descriptionProduct = descriptionProductTextField.getText();
+        Object listProduct[][] = adminProduct.getProductList(descriptionProduct);
+        modifyProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            listProduct,
             new String [] {
-                "Número", "Proveedor"
+                "Código de barras", "Descripción"
             }
         ));
     }
@@ -52,19 +51,19 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
 
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        modifyProviderTable = new javax.swing.JTable();
-        nameProviderTextField = new javax.swing.JTextField();
+        modifyProductTable = new javax.swing.JTable();
+        descriptionProductTextField = new javax.swing.JTextField();
         descriptionLabel = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
-        modifyProviderButton = new javax.swing.JButton();
+        modifyProductButton = new javax.swing.JButton();
         moduleNameLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setName("Modificar proveedor"); // NOI18N
         setPreferredSize(new java.awt.Dimension(600, 500));
 
-        modifyProviderTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
+        modifyProductTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        modifyProductTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -77,30 +76,30 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
                 {null, null}
             },
             new String [] {
-                "Número", "Proveedor"
+                "Código de barras", "Descripción"
             }
         ));
-        jScrollPane3.setViewportView(modifyProviderTable);
+        jScrollPane3.setViewportView(modifyProductTable);
 
-        nameProviderTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nameProviderTextField.setPreferredSize(new java.awt.Dimension(288, 25));
-        nameProviderTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        descriptionProductTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        descriptionProductTextField.setPreferredSize(new java.awt.Dimension(288, 25));
+        descriptionProductTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 updateTable(evt);
             }
         });
 
         descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        descriptionLabel.setForeground(new java.awt.Color(0, 102, 0));
-        descriptionLabel.setText("Teclee el nombre del proveedor:");
+        descriptionLabel.setForeground(new java.awt.Color(204, 204, 0));
+        descriptionLabel.setText("Teclee el nombre del producto:");
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(0, 153, 0));
-        titleLabel.setText("Modificar Proveedor");
+        titleLabel.setForeground(new java.awt.Color(204, 204, 0));
+        titleLabel.setText("Modificar Producto");
 
-        modifyProviderButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        modifyProviderButton.setText("Aceptar");
-        modifyProviderButton.addActionListener(new java.awt.event.ActionListener() {
+        modifyProductButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        modifyProductButton.setText("Aceptar");
+        modifyProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectProvider(evt);
             }
@@ -113,8 +112,8 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(modifyProviderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameProviderTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(modifyProductButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descriptionProductTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,18 +133,18 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(descriptionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameProviderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(descriptionProductTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modifyProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(modifyProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        moduleNameLabel.setBackground(new java.awt.Color(0, 153, 51));
+        moduleNameLabel.setBackground(new java.awt.Color(204, 204, 0));
         moduleNameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         moduleNameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        moduleNameLabel.setText("    PROVEEDORES");
+        moduleNameLabel.setText("    PRODUCTOS");
         moduleNameLabel.setOpaque(true);
         moduleNameLabel.setPreferredSize(new java.awt.Dimension(600, 30));
 
@@ -173,19 +172,19 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectProvider
-        int selectedRow = modifyProviderTable.getSelectedRow();
-        Object indentifier = modifyProviderTable.getValueAt(selectedRow, 0);
+        int selectedRow = modifyProductTable.getSelectedRow();
+        Object indentifier = modifyProductTable.getValueAt(selectedRow, 0);
         swapPanels();
         switchPanel.setData(indentifier.toString());
     }//GEN-LAST:event_selectProvider
 
     private void updateTable(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateTable
-        String nameProvider = nameProviderTextField.getText();
-        Object listProvider[][] = adminProvider.getProviderList(nameProvider);
-        modifyProviderTable.setModel(new javax.swing.table.DefaultTableModel(
-            listProvider,
+        String descriptionProduct = descriptionProductTextField.getText();
+        Object listProduct[][] = adminProduct.getProductList(descriptionProduct);
+        modifyProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            listProduct,
             new String [] {
-                "Número", "Proveedor"
+                "Código de barras", "Descripción"
             }
         ));
     }//GEN-LAST:event_updateTable
@@ -193,14 +192,14 @@ public class ViewModifyProviderTablePanel extends SwitchJPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JTextField descriptionProductTextField;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton modifyProviderButton;
-    private javax.swing.JTable modifyProviderTable;
+    private javax.swing.JButton modifyProductButton;
+    private javax.swing.JTable modifyProductTable;
     private javax.swing.JLabel moduleNameLabel;
-    private javax.swing.JTextField nameProviderTextField;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
     
-    private AdminProvider adminProvider;
+    private AdminProduct adminProduct;
 }
