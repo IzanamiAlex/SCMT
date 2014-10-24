@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package product.view;
+package inventory.view;
 
 import javax.swing.JOptionPane;
-import product.controller.AdminProduct;
+import inventory.controller.AdminProduct;
 import provider.controller.AdminProvider;
 
 /**

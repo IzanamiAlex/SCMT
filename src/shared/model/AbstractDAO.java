@@ -68,8 +68,6 @@ public abstract class AbstractDAO<T> {
     protected abstract String buildScriptStore(T entity);
     protected abstract String buildScriptUpdate(T entity);
     protected abstract String buildScriptDelete(T entity);
-    protected  String buildScriptFind(String indentifier){return null;}
-    protected  String buildScriptLoad(String condition){return null;}
      
     private void loadDriver(String driver){
         try {

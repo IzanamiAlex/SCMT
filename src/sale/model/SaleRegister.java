@@ -8,10 +8,11 @@ package sale.model;
 
 
 import java.util.Date;
-import java.util.List;
 import shared.model.Product;
 import java.util.Calendar;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -20,77 +21,72 @@ import java.util.Calendar;
 public class SaleRegister {
     
     public SaleRegister() {
-        obtenerFecha();
+        this.productList = new HashMap<>();
+        
+        Calendar calendario = Calendar.getInstance();
+        this.sale_date = calendario.getTime();
     }
+
+    public SaleRegister(long saleNumber, Date sale_date, Map<Product, Integer> productList) {
+        this.saleNumber = saleNumber;
+        this.productList = productList;
+        this.sale_date = sale_date;
+    }  
     
     public void addProduct(Product product){
-        productList.add(product);
-    }
-
-    public void setSaleNumber(long saleNumber) {
-        this.saleNumber = saleNumber;
-    }
-
-    public void setCharge_total(double charge_total) {
-        this.charge_total = charge_total;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
-
-    public void setSale_date(Date sale_date) {
-        this.sale_date = sale_date;
-    }
-    
-    public void obtenerFecha(){
-        Calendar calendario = Calendar.getInstance();
-        sale_date = calendario.getTime();
+        if ( productList.containsKey(product) ) {
+            productList.put(product, productList.get(product)+1);
+        }else{
+            productList.put(product, 1);
+        }
     }
     
     public void removeProduct(Product product){
-        productList.remove(product);
+        if ( productList.containsKey(product) ) {
+            if ( productList.get(product) > 1 ) {
+                productList.put(product, productList.get(product)-1);
+            }else{
+                productList.remove(product);
+            }
+        }
     }
     
     public boolean isCharged(){
         return charged;
-        
     }
 
     public long getSaleNumber() {
         return saleNumber;
     }
 
-    public double getCharge_total() {
-        return charge_total;
-    }
-
     public Date getSale_date() {
         return sale_date;
     }
     
-    public double getTotalPrice(){
-        double totalPrice = 0;
-
-        for (int i = 0; i < productList.size(); i++) {
-            totalPrice += productList.get(i).getPriceUnit();
+    public double getTotalCost(){
+        double totalCost = 0;
+        Set<Product> products = productList.keySet();
+        
+        for( Product product : products ){
+            double priceProduct = product.getPriceUnit();
+            totalCost += priceProduct * (productList.get(product));
         }
-        return totalPrice;
+        
+        return totalCost;
     }
     
     public void setCharged(boolean charged){
         this.charged = charged;
     }
     
-    public List<Product> getProductList(){
+    public Map<Product,Integer> getProductList(){
         return productList;
         
     }
    
     private long saleNumber;
-    private double charge_total;
-    private boolean charged;
-    private List<Product> productList;
+    private boolean charged = false;
+    private Map<Product,Integer> productList;
     private Date sale_date;
  
 }

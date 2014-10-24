@@ -4,45 +4,45 @@
  * and open the template in the editor.
  */
 
-package product.view;
+package inventory.view;
 
-import provider.view.*;
 import shared.view.SwitchJPanel;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import product.controller.AdminProduct;
+import inventory.controller.AdminProduct;
 import provider.controller.AdminProvider;
 
 /**
  *
  * @author Izanami
  */
-public class ViewModifyProductPanel extends SwitchJPanel {
+public class ViewRemoveProductPanel extends SwitchJPanel {
 
     /**
-     * Creates new form ViewModifyProviderPanel
+     * Creates new form ViewRemoveProviderPanel
      */
-    public ViewModifyProductPanel() {
+    public ViewRemoveProductPanel() {
         initComponents();
         this.adminProduct = null;
+        this.dataProduct = null;
     }
-    public ViewModifyProductPanel(AdminProduct adminProduct) {
+
+    public ViewRemoveProductPanel(AdminProduct adminProduct) {
         initComponents();
         this.adminProduct = adminProduct;
+        this.dataProduct = null;
     }
     
     @Override
     public void setData(String barcode) {
         dataProduct = adminProduct.getDataProduct(barcode);
-
+        
         barcodeTextField.setText(dataProduct.get("barcode"));
         descriptionTextField.setText(dataProduct.get("description"));
         priceUnitTextField.setText(dataProduct.get("priceUnit"));
         saleUnitTextField.setText(dataProduct.get("priceSaleUnit"));
         departamentTextField.setText(dataProduct.get("departament"));
-        
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,62 +54,64 @@ public class ViewModifyProductPanel extends SwitchJPanel {
 
         titleLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
-        descriptionProductLabel = new javax.swing.JLabel();
-        descriptionTextField = new javax.swing.JTextField();
         barcodeLabel = new javax.swing.JLabel();
         barcodeTextField = new javax.swing.JTextField();
-        departamentLabel = new javax.swing.JLabel();
-        departamentTextField = new javax.swing.JTextField();
-        modifyProductButton = new javax.swing.JButton();
+        descriptionProductLabel = new javax.swing.JLabel();
+        descriptionTextField = new javax.swing.JTextField();
+        priceUnitTextField = new javax.swing.JTextField();
+        priceUnitLabel = new javax.swing.JLabel();
+        removeProviderButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         moduleNameLabel = new javax.swing.JLabel();
         saleUnitLabel = new javax.swing.JLabel();
-        priceUnitLabel = new javax.swing.JLabel();
+        departament = new javax.swing.JLabel();
         saleUnitTextField = new javax.swing.JTextField();
-        priceUnitTextField = new javax.swing.JTextField();
+        departamentTextField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setName("Modificar proveedor"); // NOI18N
         setPreferredSize(new java.awt.Dimension(600, 500));
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(204, 204, 0));
-        titleLabel.setText("MODIFICAR PRODUCTO");
+        titleLabel.setText("ELIMINAR PRODUCTO");
 
         descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         descriptionLabel.setForeground(new java.awt.Color(204, 204, 0));
-        descriptionLabel.setText("- Modifique la siguiente informacion acerca del nuevo producto:");
-
-        descriptionProductLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        descriptionProductLabel.setText("Descripción");
-
-        descriptionTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        descriptionTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        descriptionTextField.setMinimumSize(new java.awt.Dimension(10, 20));
-        descriptionTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+        descriptionLabel.setText("- Verifique que sea el producto que quiere eliminar.");
 
         barcodeLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         barcodeLabel.setText("Código de barras");
 
+        barcodeTextField.setEditable(false);
+        barcodeTextField.setBackground(new java.awt.Color(255, 255, 153));
         barcodeTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         barcodeTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        barcodeTextField.setMinimumSize(new java.awt.Dimension(10, 20));
         barcodeTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
-        departamentLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        departamentLabel.setText("Departamento");
+        descriptionProductLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        descriptionProductLabel.setText("Descripción");
 
-        departamentTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        departamentTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        departamentTextField.setMinimumSize(new java.awt.Dimension(10, 20));
-        departamentTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+        descriptionTextField.setEditable(false);
+        descriptionTextField.setBackground(new java.awt.Color(255, 255, 153));
+        descriptionTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        descriptionTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        descriptionTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
-        modifyProductButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        modifyProductButton.setText("Guardar cambios");
-        modifyProductButton.setPreferredSize(new java.awt.Dimension(150, 30));
-        modifyProductButton.addActionListener(new java.awt.event.ActionListener() {
+        priceUnitTextField.setEditable(false);
+        priceUnitTextField.setBackground(new java.awt.Color(255, 255, 153));
+        priceUnitTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        priceUnitTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        priceUnitTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
+        priceUnitLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        priceUnitLabel.setText("Precio de unidad");
+
+        removeProviderButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        removeProviderButton.setText("Elminar Proveedor");
+        removeProviderButton.setPreferredSize(new java.awt.Dimension(150, 30));
+        removeProviderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyProvider(evt);
+                removeProvider(evt);
             }
         });
 
@@ -119,7 +121,7 @@ public class ViewModifyProductPanel extends SwitchJPanel {
         cancelButton.setPreferredSize(new java.awt.Dimension(150, 30));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelModifyProvider(evt);
+                cancelRemoveProvider(evt);
             }
         });
 
@@ -133,18 +135,20 @@ public class ViewModifyProductPanel extends SwitchJPanel {
         saleUnitLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         saleUnitLabel.setText("Unidad de venta");
 
-        priceUnitLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        priceUnitLabel.setText("Precio de unidad");
+        departament.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        departament.setText("Departamento");
 
+        saleUnitTextField.setEditable(false);
+        saleUnitTextField.setBackground(new java.awt.Color(255, 255, 153));
         saleUnitTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         saleUnitTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        saleUnitTextField.setMinimumSize(new java.awt.Dimension(10, 20));
         saleUnitTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
-        priceUnitTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        priceUnitTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        priceUnitTextField.setMinimumSize(new java.awt.Dimension(10, 20));
-        priceUnitTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+        departamentTextField.setEditable(false);
+        departamentTextField.setBackground(new java.awt.Color(255, 255, 153));
+        departamentTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        departamentTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        departamentTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,37 +158,45 @@ public class ViewModifyProductPanel extends SwitchJPanel {
                 .addComponent(moduleNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionLabel)
-                    .addComponent(titleLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descriptionLabel)
+                            .addComponent(titleLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(descriptionProductLabel)
-                                    .addComponent(barcodeLabel)
-                                    .addComponent(priceUnitLabel))
+                                .addGap(8, 8, 8)
+                                .addComponent(departament)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(barcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(priceUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(modifyProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(saleUnitLabel)
-                                    .addComponent(departamentLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(saleUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(150, 150, 150)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(priceUnitLabel)
+                                        .addComponent(descriptionProductLabel))
+                                    .addComponent(barcodeLabel)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(saleUnitLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(descriptionTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                                .addComponent(barcodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(priceUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(saleUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -196,15 +208,15 @@ public class ViewModifyProductPanel extends SwitchJPanel {
                 .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(descriptionLabel)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(barcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(barcodeLabel))
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(descriptionProductLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priceUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(priceUnitLabel))
@@ -215,51 +227,46 @@ public class ViewModifyProductPanel extends SwitchJPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(departamentLabel))
-                .addGap(73, 73, 73)
+                    .addComponent(departament))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifyProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(109, 109, 109))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProvider
-        String description = descriptionTextField.getText();
-        long barcode = Long.valueOf(barcodeTextField.getText());
-        String departament = departamentTextField.getText();
-        String saleUnit = saleUnitTextField.getText();
-        double prieUnit = Double.valueOf(priceUnitTextField.getText());
+    private void removeProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProvider
+        String barcodeProduct = dataProduct.get("barcode");
+        adminProduct.removeProduct(barcodeProduct);
         
-        adminProduct.modifyProduct(barcode, description, prieUnit, saleUnit, departament);
-        
-        String message = "Se ha modificado el producto con el código de " +
-            "barras: " + barcode + ".";
+        String message = "Se ha eliminado el producto con el código de barras "+
+                barcodeProduct+".";
         JOptionPane.showMessageDialog(null, message);
         
         swapPanels();
         switchPanel.setData(null);
-    }//GEN-LAST:event_modifyProvider
+    }//GEN-LAST:event_removeProvider
 
-    private void cancelModifyProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelModifyProvider
+    private void cancelRemoveProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRemoveProvider
         swapPanels();
         switchPanel.setData(null);
-    }//GEN-LAST:event_cancelModifyProvider
+    }//GEN-LAST:event_cancelRemoveProvider
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel barcodeLabel;
     private javax.swing.JTextField barcodeTextField;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel departamentLabel;
+    private javax.swing.JLabel departament;
     private javax.swing.JTextField departamentTextField;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel descriptionProductLabel;
     private javax.swing.JTextField descriptionTextField;
-    private javax.swing.JButton modifyProductButton;
     private javax.swing.JLabel moduleNameLabel;
     private javax.swing.JLabel priceUnitLabel;
     private javax.swing.JTextField priceUnitTextField;
+    private javax.swing.JButton removeProviderButton;
     private javax.swing.JLabel saleUnitLabel;
     private javax.swing.JTextField saleUnitTextField;
     private javax.swing.JLabel titleLabel;

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package product.view;
+package inventory.view;
 
-import product.controller.AdminProduct;
+import inventory.controller.AdminProduct;
 import shared.view.SwitchJPanel;
 
 /**

@@ -7,9 +7,8 @@
 package sale.controller;
 
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sale.model.DAOSaleRegister;
@@ -22,27 +21,37 @@ import shared.model.Product;
  * @author A12216422
  */
 public class Seller {
-    DAOProduct daoProduct = new DAOProduct();
-    DAOSaleRegister daoSaleRegis = new DAOSaleRegister();
+    private DAOProduct daoProduct = new DAOProduct();
+    private DAOSaleRegister daoSaleRegis = new DAOSaleRegister();
     private SaleRegister saleRegister;
     
-    public void createRegister(){
+    public Seller(){
         
     }
     
-    public Date getDate(){
-        Calendar calendario = Calendar.getInstance();
-        Date sale_date = calendario.getTime();
-        return sale_date;
+    public void createRegister(){
+        saleRegister = new SaleRegister();
     }
     
-    public double getTotalPrice(){
-        double totalPrice = 0;
-        List<Product> productList = saleRegister.getProductList();
-        for (int i = 0; i < productList.size(); i++) {
-            totalPrice += productList.get(i).getPriceUnit();
+    public double getTotalCost(){
+        return saleRegister.getTotalCost();
+    }
+    
+    public Object[][] getProductList(){
+        Map<Product, Integer> productList = saleRegister.getProductList();
+        Set<Product> products = productList.keySet();
+        Object[][] dataProducts = new Object[productList.size()][4];
+        
+        int rowNumber = 0;
+        for( Product product : products ){
+            dataProducts[rowNumber][0] = product.getBarcode();
+            dataProducts[rowNumber][1] = product.getDescription();
+            dataProducts[rowNumber][2] = product.getPriceUnit();
+            dataProducts[rowNumber][3] = productList.get(product);
+            rowNumber++;
         }
-        return totalPrice;
+        
+        return dataProducts;
     }
     
     public void addProduct(long barcode){
@@ -61,16 +70,26 @@ public class Seller {
         return product;
     }
     
+    public double getCostProductQuantity(long barcode){
+        Map<Product, Integer> productList = saleRegister.getProductList();
+        Set<Product> products = productList.keySet();
+        
+        for( Product product : products ){
+            if (product.getBarcode() == barcode) {
+                int productQuantity = productList.get(product);
+                return product.getPriceUnit() * productQuantity;
+            }
+        }
+        return 0;
+    }
+    
     public void removeProduct(long barcode){
         Product product = findProduct(barcode);
         saleRegister.removeProduct(product);
     }
  
-    /**********************************************
-    ** PENSAR EN UN BUEN NOMBRE PARA ESTE MÉTODO **
-    ***********************************************/
     public double returnChange(double moneyClient){
-        double charge = moneyClient - getTotalPrice();
+        double charge = moneyClient - getTotalCost();
         if (charge>=0) {
             saleRegister.setCharged(true);
             finishSaleRegister();
@@ -84,7 +103,11 @@ public class Seller {
     
     public void finishSaleRegister(){
         if (saleRegister.isCharged()) {
-            daoSaleRegis.addSaleRegister(saleRegister);
+            try {
+                daoSaleRegis.store(saleRegister);
+            } catch (SQLException ex) {
+                Logger.getLogger(Seller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             cancelSaleRegister();
         }

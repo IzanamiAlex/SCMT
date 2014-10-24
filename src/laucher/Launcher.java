@@ -6,11 +6,12 @@
 
 package laucher;
 
-import product.controller.AdminProduct;
-import product.view.ViewProduct;
+import inventory.controller.AdminProduct;
+import inventory.view.ViewProduct;
 import provider.controller.AdminProvider;
 import provider.model.DAOProvider;
 import provider.view.ViewProvider;
+import sale.view.ViewSale;
 import shared.model.DAOProduct;
 
 /**
@@ -56,6 +57,11 @@ public class Launcher extends javax.swing.JFrame {
         });
 
         salesModuleButton.setText("Ventas");
+        salesModuleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salesModuleButtonActionPerformed(evt);
+            }
+        });
 
         reportsModuleButton.setText("Reportes");
 
@@ -118,6 +124,21 @@ public class Launcher extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_LaunchInventoryModule
+
+    private void salesModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesModuleButtonActionPerformed
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                /**************************
+                *DAO = Data Access Object *
+                ***************************/
+                DAOProduct daoProduct = new DAOProduct();
+                AdminProduct adminProduct = new AdminProduct(daoProduct);
+                ViewSale viewProduct = new ViewSale();
+                viewProduct.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_salesModuleButtonActionPerformed
 
     /**
      * @param args the command line arguments
