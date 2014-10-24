@@ -11,6 +11,7 @@ import inventory.view.ViewProduct;
 import provider.controller.AdminProvider;
 import provider.model.DAOProvider;
 import provider.view.ViewProvider;
+import sale.controller.Seller;
 import sale.view.ViewSale;
 import shared.model.DAOProduct;
 
@@ -132,9 +133,8 @@ public class Launcher extends javax.swing.JFrame {
                 /**************************
                 *DAO = Data Access Object *
                 ***************************/
-                DAOProduct daoProduct = new DAOProduct();
-                AdminProduct adminProduct = new AdminProduct(daoProduct);
                 ViewSale viewProduct = new ViewSale();
+                Seller seller = new Seller();
                 viewProduct.setVisible(true);
             }
         });

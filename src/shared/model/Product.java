@@ -58,6 +58,23 @@ public class Product {
     public String getDepartament() {
         return departament;
     }
+
+    @Override
+    public int hashCode() {
+        return (int)(barcode); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(Product.class.isInstance(obj)){
+            Product p = (Product)obj;
+            System.out.println(p.getClass());
+            return  p.getBarcode()==this.barcode;
+        }else return false;
+    }
+    
+    
+    
     
     private long barcode;
     private String description;

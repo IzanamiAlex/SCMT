@@ -10,7 +10,7 @@ import java.util.Set;
 public abstract class AbstractDAO<T> {
     
     public AbstractDAO(){
-        this("localhost", "scmt", "postgres", "root", "org.postgresql.Driver");
+        this("localhost", "scmt", "postgres", "chopper", "org.postgresql.Driver");
     }
     
     public AbstractDAO(String host, String database, String login, String password,String driver) {

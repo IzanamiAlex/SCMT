@@ -116,6 +116,16 @@ public class Seller {
     public SaleRegister getSaleRegister(){
         return saleRegister;
     }
+    
+    public void print(){
+        Map<Product,Integer> l = saleRegister.getProductList();
+        Set<Product> s = l.keySet();
+        
+        for(Product product:s){
+            System.out.println(product.getDescription());
+        }
+        
+    }
 
 }
 

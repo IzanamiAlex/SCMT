@@ -15,8 +15,7 @@ import shared.model.Product;
  * @author BuiRai
  */
 public class ViewSale extends javax.swing.JFrame {
-    private Seller seller = new Seller();
-    private AdminSale adminSale = new AdminSale();
+    private Seller seller;
     private DefaultTableModel model = new DefaultTableModel();
     private double totalCost = 0;
     
@@ -24,6 +23,8 @@ public class ViewSale extends javax.swing.JFrame {
      * Creates new form viewSale
      */
     public ViewSale() {
+        seller = new Seller();
+        seller.createRegister();
         initComponents();
     }
     
@@ -204,7 +205,8 @@ public class ViewSale extends javax.swing.JFrame {
     }//GEN-LAST:event_removeProduct
 
     private void chargeSale(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargeSale
-        ViewChargeSale viewChargeSlae = new ViewChargeSale(totalCost);
+        ViewChargeSale viewChargeSale = new ViewChargeSale(totalCost);
+        viewChargeSale.setVisible(true);
     }//GEN-LAST:event_chargeSale
     
     public void updateCost(){

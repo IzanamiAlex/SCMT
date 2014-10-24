@@ -35,8 +35,11 @@ public class SaleRegister {
     
     public void addProduct(Product product){
         if ( productList.containsKey(product) ) {
-            productList.put(product, productList.get(product)+1);
+            int quantity = productList.get(product)+1;
+            System.out.println("Aqui: "+ quantity);
+            productList.put(product, quantity);
         }else{
+            System.out.println(":v");
             productList.put(product, 1);
         }
     }
