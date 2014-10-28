@@ -18,7 +18,7 @@ import shared.model.Product;
  */
 public class AdminProduct {
     private DAOProduct daoProduct;
-
+    
     public AdminProduct(DAOProduct dataProduct) {
         this.daoProduct = dataProduct;
     }

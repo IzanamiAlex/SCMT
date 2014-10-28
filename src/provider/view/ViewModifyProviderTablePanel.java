@@ -6,7 +6,7 @@
 
 package provider.view;
 
-import inventory.controller.AdminProduct;
+import product.controller.AdminProduct;
 import provider.controller.AdminProvider;
 import shared.view.SwitchJPanel;
 

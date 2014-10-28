@@ -6,8 +6,8 @@
 
 package laucher;
 
-import inventory.controller.AdminProduct;
-import inventory.view.ViewProduct;
+import product.controller.AdminProduct;
+import product.view.ViewProduct;
 import provider.controller.AdminProvider;
 import provider.model.DAOProvider;
 import provider.view.ViewProvider;

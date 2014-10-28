@@ -7,6 +7,7 @@
 package product.view;
 
 import javax.swing.JOptionPane;
+import product.controller.AdminInventary;
 import product.controller.AdminProduct;
 import provider.controller.AdminProvider;
 
@@ -26,6 +27,7 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
     public ViewAddProductPanel(AdminProduct adminProduct) {
         initComponents();
         this.adminProduct = adminProduct;
+        this.adminInventary = new AdminInventary();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,6 +52,10 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
         saleUnitLabel = new javax.swing.JLabel();
         priceUnitLabel = new javax.swing.JLabel();
         priceUnitTextField = new javax.swing.JTextField();
+        currentStockLabel = new javax.swing.JLabel();
+        currentStockTextField = new javax.swing.JTextField();
+        minimunStockLabel = new javax.swing.JLabel();
+        minimunStockTextField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(600, 500));
@@ -108,6 +114,18 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
         priceUnitTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
         priceUnitTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
+        currentStockLabel.setText("Cantidad actual");
+
+        currentStockTextField.setText("0");
+        currentStockTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        currentStockTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
+        minimunStockLabel.setText("Cantidad actual");
+
+        minimunStockTextField.setText("0");
+        minimunStockTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        minimunStockTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,20 +142,29 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
                             .addComponent(descriptionLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(descriptionProductLabel)
-                            .addComponent(barcodeLabel)
-                            .addComponent(saleUnitLabel)
-                            .addComponent(priceUnitLabel)
-                            .addComponent(departamentLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(priceUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(barcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(saleUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(descriptionProductLabel)
+                                    .addComponent(barcodeLabel)
+                                    .addComponent(saleUnitLabel)
+                                    .addComponent(priceUnitLabel)
+                                    .addComponent(departamentLabel)
+                                    .addComponent(currentStockLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(priceUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(barcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(saleUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(currentStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(minimunStockLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(minimunStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -169,9 +196,17 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departamentLabel))
-                .addGap(91, 91, 91)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentStockLabel)
+                    .addComponent(currentStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minimunStockLabel)
+                    .addComponent(minimunStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(createProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,8 +216,9 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
         String saleUnit = saleUnitTextField.getText();
         double priceUnit = Double.valueOf(priceUnitTextField.getText());
         String departament = departamentTextField.getText();
-        
-        adminProduct.addProduct(barcode, description, priceUnit, saleUnit, departament);
+        int minimunStock = Integer.valueOf(minimunStockTextField.getText());
+        int currentStock = Integer.valueOf(currentStockTextField.getText());
+        adminInventary.addInventory(barcode, description, priceUnit, saleUnit, departament, minimunStock, currentStock);
         
         String message = "Se ha creado el producto con el codigo de barras: "+ 
             barcode + ".";
@@ -194,11 +230,15 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
     private javax.swing.JLabel barcodeLabel;
     private javax.swing.JTextField barcodeTextField;
     private javax.swing.JButton createProductButton;
+    private javax.swing.JLabel currentStockLabel;
+    private javax.swing.JTextField currentStockTextField;
     private javax.swing.JLabel departamentLabel;
     private javax.swing.JTextField departamentTextField;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel descriptionProductLabel;
     private javax.swing.JTextField descriptionTextField;
+    private javax.swing.JLabel minimunStockLabel;
+    private javax.swing.JTextField minimunStockTextField;
     private javax.swing.JLabel moduleNameLabel;
     private javax.swing.JLabel priceUnitLabel;
     private javax.swing.JTextField priceUnitTextField;
@@ -208,4 +248,5 @@ public class ViewAddProductPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     
     private AdminProduct adminProduct;
+    private AdminInventary adminInventary;
 }

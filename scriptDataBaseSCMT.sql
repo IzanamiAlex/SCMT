@@ -26,24 +26,26 @@ WITH (
 );
 ALTER TABLE provider
   OWNER TO postgres;
-CREATE TABLE product_list_sold
+
+CREATE TABLE price_provider
 (
   barcode_product bigint NOT NULL,
-  sale_number bigint NOT NULL,
-  product_quantity integer,
-  CONSTRAINT pk_product_sale PRIMARY KEY (barcode_product , sale_number ),
-  CONSTRAINT fk_barcode FOREIGN KEY (barcode_product)
+  indentifier_provider integer NOT NULL,
+  price_product_for_provider double precision NOT NULL,
+  CONSTRAINT pk_price_provide PRIMARY KEY (barcode_product , indentifier_provider ),
+  CONSTRAINT fk_product FOREIGN KEY (barcode_product)
       REFERENCES product (barcode) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fk_sale_number FOREIGN KEY (sale_number)
-      REFERENCES sale_register (sale_number) MATCH SIMPLE
+  CONSTRAINT fk_provider FOREIGN KEY (indentifier_provider)
+      REFERENCES provider (identifier) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE product_list_sold
+ALTER TABLE price_provider
   OWNER TO postgres;
+
 
 CREATE TABLE sale_register
 (

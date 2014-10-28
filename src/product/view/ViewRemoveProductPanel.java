@@ -67,6 +67,10 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
         departament = new javax.swing.JLabel();
         saleUnitTextField = new javax.swing.JTextField();
         departamentTextField = new javax.swing.JTextField();
+        currentStockTextField = new javax.swing.JTextField();
+        minimunStockTextField = new javax.swing.JTextField();
+        minimunStockLabel = new javax.swing.JLabel();
+        currentStockLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(600, 500));
@@ -150,6 +154,22 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
         departamentTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
         departamentTextField.setPreferredSize(new java.awt.Dimension(10, 20));
 
+        currentStockTextField.setEditable(false);
+        currentStockTextField.setBackground(new java.awt.Color(255, 255, 153));
+        currentStockTextField.setText("0");
+        currentStockTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        currentStockTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
+        minimunStockTextField.setEditable(false);
+        minimunStockTextField.setBackground(new java.awt.Color(255, 255, 153));
+        minimunStockTextField.setText("0");
+        minimunStockTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        minimunStockTextField.setPreferredSize(new java.awt.Dimension(10, 20));
+
+        minimunStockLabel.setText("Cantidad actual");
+
+        currentStockLabel.setText("Cantidad actual");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,16 +185,15 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
                             .addComponent(descriptionLabel)
                             .addComponent(titleLabel)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addGap(77, 77, 77)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
                                 .addComponent(departament)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
+                                .addGap(37, 37, 37)
                                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +215,19 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(priceUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, Short.MAX_VALUE)))
-                            .addComponent(saleUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(saleUnitTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(currentStockLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(currentStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(minimunStockLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(minimunStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(150, 150, 150)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -228,11 +259,19 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departamentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departament))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentStockLabel)
+                    .addComponent(currentStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minimunStockLabel)
+                    .addComponent(minimunStockTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(109, 109, 109))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -258,11 +297,15 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
     private javax.swing.JLabel barcodeLabel;
     private javax.swing.JTextField barcodeTextField;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel currentStockLabel;
+    private javax.swing.JTextField currentStockTextField;
     private javax.swing.JLabel departament;
     private javax.swing.JTextField departamentTextField;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel descriptionProductLabel;
     private javax.swing.JTextField descriptionTextField;
+    private javax.swing.JLabel minimunStockLabel;
+    private javax.swing.JTextField minimunStockTextField;
     private javax.swing.JLabel moduleNameLabel;
     private javax.swing.JLabel priceUnitLabel;
     private javax.swing.JTextField priceUnitTextField;

@@ -39,21 +39,33 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="descriptionProductLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="barcodeLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="saleUnitLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="priceUnitLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="departamentLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="priceUnitTextField" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="barcodeTextField" min="-2" pref="320" max="-2" attributes="0"/>
-                          <Component id="saleUnitTextField" min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="createProductButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="descriptionTextField" min="-2" pref="320" max="-2" attributes="0"/>
-                          <Component id="departamentTextField" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="descriptionProductLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="barcodeLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="saleUnitLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="priceUnitLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="departamentLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="currentStockLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="priceUnitTextField" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="barcodeTextField" min="-2" pref="320" max="-2" attributes="0"/>
+                                  <Component id="saleUnitTextField" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="createProductButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="descriptionTextField" min="-2" pref="320" max="-2" attributes="0"/>
+                                  <Component id="departamentTextField" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="currentStockTextField" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="minimunStockLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="minimunStockTextField" min="-2" pref="170" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -95,9 +107,19 @@
                   <Component id="departamentTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="departamentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="currentStockLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="currentStockTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="minimunStockLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="minimunStockTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
               <Component id="createProductButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -255,6 +277,46 @@
     </Component>
     <Component class="javax.swing.JTextField" name="priceUnitTextField">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="0" green="cc" red="cc" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[10, 20]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="currentStockLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cantidad actual"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="currentStockTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="0" green="cc" red="cc" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[10, 20]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="minimunStockLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cantidad actual"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="minimunStockTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder>

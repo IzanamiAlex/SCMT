@@ -6,6 +6,7 @@
 
 package product.view;
 
+import product.controller.AdminInventary;
 import product.controller.AdminProduct;
 import shared.view.SwitchJPanel;
 
@@ -202,4 +203,5 @@ public class ViewModifyProductTablePanel extends SwitchJPanel {
     // End of variables declaration//GEN-END:variables
     
     private AdminProduct adminProduct;
+    private AdminInventary adminInventary;
 }

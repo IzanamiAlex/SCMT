@@ -65,8 +65,6 @@ public class DAOProduct extends AbstractDAO<Product>{
         /******************
          ** Build script **
          ******************/
-        //Hay que revisar que el ILIKE funcione, pues
-        //solo funciona para texto... !:D
         String scriptLoad = "SELECT * FROM product WHERE description ILIKE '%$description$%';";
         scriptLoad = scriptLoad.replace("$description$", description);
         
@@ -119,7 +117,7 @@ public class DAOProduct extends AbstractDAO<Product>{
     @Override
     protected String buildScriptUpdate(Product product){
         
-         String scriptUpdate = "UPDATE product\n" +
+        String scriptUpdate = "UPDATE product\n" +
             "   SET description = '$description$', sales_unit = '$sales_unit$', price=$price$, departament='$departament$'\n" +
             " WHERE barcode = $barcode$;";
         scriptUpdate = scriptUpdate.replace("$barcode$", 
