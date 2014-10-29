@@ -9,6 +9,7 @@ package laucher;
 import controller.AdminProduct;
 import view.product.ViewProduct;
 import controller.AdminProvider;
+import controller.Seller;
 import data.DAOProvider;
 import view.provider.ViewProvider;
 import view.sale.ViewSale;
