@@ -6,13 +6,13 @@
 
 package laucher;
 
-import product.controller.AdminProduct;
-import product.view.ViewProduct;
-import provider.controller.AdminProvider;
-import provider.model.DAOProvider;
-import provider.view.ViewProvider;
-import sale.view.ViewSale;
-import shared.model.DAOProduct;
+import controller.AdminProduct;
+import view.product.ViewProduct;
+import controller.AdminProvider;
+import data.DAOProvider;
+import view.provider.ViewProvider;
+import view.sale.ViewSale;
+import data.DAOProduct;
 
 /**
  *
