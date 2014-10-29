@@ -132,9 +132,8 @@ public class Launcher extends javax.swing.JFrame {
                 /**************************
                 *DAO = Data Access Object *
                 ***************************/
-                DAOProduct daoProduct = new DAOProduct();
-                AdminProduct adminProduct = new AdminProduct(daoProduct);
                 ViewSale viewProduct = new ViewSale();
+                Seller seller = new Seller();
                 viewProduct.setVisible(true);
             }
         });
