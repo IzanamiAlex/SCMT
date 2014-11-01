@@ -5,19 +5,18 @@
  */
 package view.sale;
 
-import view.sale.ViewChargeSale;
-import javax.swing.table.DefaultTableModel;
-import controller.AdminSale;
+
 import controller.Seller;
-import model.Product;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
  * @author BuiRai
  */
 public class ViewSale extends javax.swing.JFrame {
-    private Seller seller = new Seller();
-    private AdminSale adminSale = new AdminSale();
+    private Seller seller;
+
     private DefaultTableModel model = new DefaultTableModel();
     private double totalCost = 0;
     
@@ -25,6 +24,8 @@ public class ViewSale extends javax.swing.JFrame {
      * Creates new form viewSale
      */
     public ViewSale() {
+        seller = new Seller();
+        seller.createRegister();
         initComponents();
     }
     
@@ -57,13 +58,12 @@ public class ViewSale extends javax.swing.JFrame {
         productListTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Código de barras");
 
         barcodeProductTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        barcodeProductTextField.setText("123464453453");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Agregar");
@@ -84,7 +84,6 @@ public class ViewSale extends javax.swing.JFrame {
         saleCostTextField.setEditable(false);
         saleCostTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         saleCostTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        saleCostTextField.setText("$ 341.00");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,7 +92,6 @@ public class ViewSale extends javax.swing.JFrame {
         saleTotalTextField.setEditable(false);
         saleTotalTextField.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         saleTotalTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        saleTotalTextField.setText("$56.60");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -106,7 +104,15 @@ public class ViewSale extends javax.swing.JFrame {
             new String [] {
                 "Código de barras", "Descripción del producto", "Precio del producto", "Cantidad del producto"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(productListTable);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -205,7 +211,8 @@ public class ViewSale extends javax.swing.JFrame {
     }//GEN-LAST:event_removeProduct
 
     private void chargeSale(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargeSale
-        ViewChargeSale viewChargeSlae = new ViewChargeSale(totalCost);
+        ViewChargeSale viewChargeSlae = new ViewChargeSale(seller,totalCost);
+        viewChargeSlae.setVisible(true);
     }//GEN-LAST:event_chargeSale
     
     public void updateCost(){
@@ -219,42 +226,6 @@ public class ViewSale extends javax.swing.JFrame {
         totalCost = seller.getTotalCost();
         String currentTotal = String.valueOf(totalCost);
         saleTotalTextField.setText(currentTotal);
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewSale().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

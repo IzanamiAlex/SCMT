@@ -12,12 +12,12 @@ package model;
  */
 public class Product {
 
-    public Product(long barcode, 
-            String description, 
-            double priceUnit, 
-            String salesUnit, 
-            String departament, 
-            double currentStock, 
+    public Product(long barcode,
+            String description,
+            double priceUnit,
+            String salesUnit,
+            String departament,
+            double currentStock,
             double minimunStock) {
         this.barcode = barcode;
         this.description = description;
@@ -27,7 +27,7 @@ public class Product {
         this.currentStock = currentStock;
         this.minimunStock = minimunStock;
     }
-    
+
     /**
      * @return the barcode
      */
@@ -62,7 +62,7 @@ public class Product {
     public String getDepartament() {
         return departament;
     }
-    
+
     /**
      * @return the currentStock
      */
@@ -76,7 +76,19 @@ public class Product {
     public double getMinimunStock() {
         return minimunStock;
     }
-    
+
+    public int hashCode() {
+        return (int)(barcode);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(Product.class.isInstance(obj)){
+            Product p = (Product)obj;
+            return  p.getBarcode()==this.barcode;
+        }else return false;
+    }
+
     private long barcode;
     private String description;
     private double priceUnit;

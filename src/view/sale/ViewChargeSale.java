@@ -6,6 +6,7 @@
 package view.sale;
 
 import controller.Seller;
+import model.SaleRegister;
 
 /**
  *
@@ -13,7 +14,8 @@ import controller.Seller;
  */
 public class ViewChargeSale extends javax.swing.JFrame {
     private Seller seller;
-    private double moneyClient = 0;
+    private SaleRegister currentSale;
+    private double clientMoney = 0;
     private double totalCost;
     private double change = 0;
     
@@ -24,16 +26,18 @@ public class ViewChargeSale extends javax.swing.JFrame {
         initComponents();
     }
     
-    public ViewChargeSale(double totalCost) {
+    public ViewChargeSale(Seller seller, double totalCost) {
+        this.seller = seller;
+        this.currentSale = seller.getSaleRegister();
         this.totalCost = totalCost;
         initComponents();
     }
     
-    public void fillFieldsToCash(){
-        double dbl_change = moneyClient - totalCost;
-        String str_change = String.valueOf(dbl_change);
-        this.changeTextField.setText(str_change);
-    }
+//    public void fillFieldsToCash(){
+//        double dbl_change = clientMoney - totalCost;
+//        String str_change = String.valueOf(dbl_change);
+//        this.changeTextField.setText(str_change);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,17 +53,46 @@ public class ViewChargeSale extends javax.swing.JFrame {
         changeTextField = new javax.swing.JTextField();
         clientMoneyTextField = new javax.swing.JTextField();
         Calculatechange = new javax.swing.JButton();
+        finalizeSale = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        printNote = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Cambio");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setText("Pago");
 
+        changeTextField.setEditable(false);
+        changeTextField.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+
+        clientMoneyTextField.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+
+        Calculatechange.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         Calculatechange.setText("Calcular cambio");
         Calculatechange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calculateCha(evt);
+                calculateChange(evt);
+            }
+        });
+
+        finalizeSale.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        finalizeSale.setText("Finalizar venta");
+        finalizeSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizeSale(evt);
+            }
+        });
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        printNote.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        printNote.setText("Imprimir nota");
+        printNote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printNote(evt);
             }
         });
 
@@ -69,85 +102,83 @@ public class ViewChargeSale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(changeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(clientMoneyTextField))
-                .addGap(98, 98, 98)
-                .addComponent(Calculatechange)
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(clientMoneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(88, 88, 88))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(changeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(finalizeSale))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Calculatechange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(printNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(clientMoneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clientMoneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addComponent(Calculatechange)
+                .addGap(18, 18, 18)
+                .addComponent(printNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(changeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Calculatechange))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(finalizeSale)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void calculateCha(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateCha
-        try{
-            double dbl_change = totalCost - moneyClient;
-            String str_change = String.valueOf(dbl_change);
-            this.changeTextField.setText(str_change);
-        }catch( NumberFormatException e ){
-            
-        }
-    }//GEN-LAST:event_calculateCha
+    private void calculateChange(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateChange
+        String str_clientMoney = clientMoneyTextField.getText();
+        double dbl_clientMoney = Double.parseDouble(str_clientMoney);
+        double dbl_change = seller.returnChange(dbl_clientMoney);
+        String str_change = String.valueOf(dbl_change);
+        
+        changeTextField.setText("$ " + str_change);
+        
+    }//GEN-LAST:event_calculateChange
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewChargeSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewChargeSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewChargeSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewChargeSale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void finalizeSale(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizeSale
+        seller.getSaleRegister().setCharged(true);
+        seller.finishSaleRegister();
+        
+    }//GEN-LAST:event_finalizeSale
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewChargeSale().setVisible(true);
-            }
-        });
-    }
+    private void printNote(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printNote
+        seller.createNote();
+    }//GEN-LAST:event_printNote
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calculatechange;
     private javax.swing.JTextField changeTextField;
     private javax.swing.JTextField clientMoneyTextField;
+    private javax.swing.JButton finalizeSale;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton printNote;
     // End of variables declaration//GEN-END:variables
 }

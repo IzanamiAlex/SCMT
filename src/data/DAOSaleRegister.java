@@ -39,8 +39,8 @@ public class DAOSaleRegister extends AbstractDAO<SaleRegister>{
         scriptStore = scriptStore.replace("$sale_number$", sale_number);
 
         DateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-        String date_sale = date.format(saleRegister.getSale_date());
-        scriptStore = scriptStore.replace("$date_sale$", date_sale);
+        String dateSale = date.format(saleRegister.getSaleDate());
+        scriptStore = scriptStore.replace("$date_sale$", dateSale);
 
         String total_cost = String.valueOf(saleRegister.getTotalCost());
         scriptStore = scriptStore.replace("$total_cost$", total_cost);
@@ -68,7 +68,7 @@ public class DAOSaleRegister extends AbstractDAO<SaleRegister>{
         scriptUpdate = scriptUpdate.replace("$sale_number$", Long.toString(saleRegister.getSaleNumber()));
 
         DateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-        String date_sale = date.format(saleRegister.getSale_date());
+        String date_sale = date.format(saleRegister.getSaleDate());
         scriptUpdate = scriptUpdate.replace("$date_sale$", date_sale);
 
         String total_cost = String.valueOf(saleRegister.getTotalCost());
