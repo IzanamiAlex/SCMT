@@ -10,12 +10,12 @@ package view.product;
  *
  * @author Izanami
  */
-public class ViewRegistreProductProvider extends javax.swing.JPanel {
+public class ViewRegistreProductProviderPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewRegistreProductProvider
      */
-    public ViewRegistreProductProvider() {
+    public ViewRegistreProductProviderPanel() {
         initComponents();
     }
 

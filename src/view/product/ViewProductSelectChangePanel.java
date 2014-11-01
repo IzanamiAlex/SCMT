@@ -13,17 +13,17 @@ import view.SwitchJPanel;
  *
  * @author Izanami
  */
-public class ViewModifyProductTablePanel extends SwitchJPanel {
+public class ViewProductSelectChangePanel extends SwitchJPanel {
 
     /**
      * Creates new form ViewModifyProviderTablePanel
      */
-    public ViewModifyProductTablePanel() {
+    public ViewProductSelectChangePanel() {
         initComponents();
         this.adminProduct = null;
     }
     
-    public ViewModifyProductTablePanel(AdminProduct adminProduct) {
+    public ViewProductSelectChangePanel(AdminProduct adminProduct) {
         initComponents();
         this.adminProduct = adminProduct;
     }

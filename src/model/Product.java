@@ -85,7 +85,7 @@ public class Product {
     public boolean equals(Object obj) {
         if(Product.class.isInstance(obj)){
             Product p = (Product)obj;
-            return  p.getBarcode()==this.barcode;
+            return  p.getBarcode() == this.barcode;
         }else return false;
     }
 

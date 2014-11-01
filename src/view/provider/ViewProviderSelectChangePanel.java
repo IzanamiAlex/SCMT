@@ -14,17 +14,17 @@ import view.SwitchJPanel;
  *
  * @author Izanami
  */
-public class ViewModifyProviderTablePanel extends SwitchJPanel {
+public class ViewProviderSelectChangePanel extends SwitchJPanel {
 
     /**
      * Creates new form ViewModifyProviderTablePanel
      */
-    public ViewModifyProviderTablePanel() {
+    public ViewProviderSelectChangePanel() {
         initComponents();
         this.adminProvider = null;
     }
     
-    public ViewModifyProviderTablePanel(AdminProvider adminProvider) {
+    public ViewProviderSelectChangePanel(AdminProvider adminProvider) {
         initComponents();
         this.adminProvider = adminProvider;
     }

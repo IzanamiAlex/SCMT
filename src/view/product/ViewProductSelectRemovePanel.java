@@ -4,38 +4,38 @@
  * and open the template in the editor.
  */
 
-package view.provider;
+package view.product;
 
+import controller.AdminProduct;
 import view.SwitchJPanel;
-import controller.AdminProvider;
 
 /**
  *
  * @author Izanami
  */
-public class ViewRemoveProviderTablePanel extends SwitchJPanel {
+public class ViewProductSelectRemovePanel extends SwitchJPanel {
 
     /**
      * Creates new form ViewRemoveProviderTablePanel
      */
-    public ViewRemoveProviderTablePanel() {
+    public ViewProductSelectRemovePanel() {
         initComponents();
-        this.adminProvider = null;
+        this.adminProduct = null;
     }
 
-    public ViewRemoveProviderTablePanel(AdminProvider adminProvider) {
+    public ViewProductSelectRemovePanel(AdminProduct adminProduct) {
         initComponents();
-        this.adminProvider = adminProvider;
+        this.adminProduct = adminProduct;
     }
     
     @Override
     public void setData(String data) {
-        String nameProvider = nameProviderTextField.getText();
-        Object listProvider[][] = adminProvider.getProviderList(nameProvider);
-        removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
-            listProvider,
+        String descriptionProduct = descriptionProductTextField.getText();
+        Object listProduct[][] = adminProduct.getProductList(descriptionProduct);
+        removeProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            listProduct,
             new String [] {
-                "Número", "Proveedor"
+                "Código de barras", "Descripción"
             }
         ));
     }
@@ -51,10 +51,10 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
         jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         descriptionLabel = new javax.swing.JLabel();
-        nameProviderTextField = new javax.swing.JTextField();
-        removeProviderButton = new javax.swing.JButton();
+        descriptionProductTextField = new javax.swing.JTextField();
+        removeProductButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        removeProviderTable = new javax.swing.JTable();
+        removeProductTable = new javax.swing.JTable();
         moduleNameLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -63,31 +63,31 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(288, 312));
 
         titleLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(0, 153, 0));
-        titleLabel.setText("Eliminar Proveedor");
+        titleLabel.setForeground(new java.awt.Color(204, 204, 0));
+        titleLabel.setText("Eliminar Producto");
 
         descriptionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        descriptionLabel.setForeground(new java.awt.Color(0, 102, 0));
-        descriptionLabel.setText("Teclee el nombre del proveedor:");
+        descriptionLabel.setForeground(new java.awt.Color(204, 204, 0));
+        descriptionLabel.setText("Teclee el nombre del producto:");
 
-        nameProviderTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        nameProviderTextField.setPreferredSize(new java.awt.Dimension(288, 25));
-        nameProviderTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        descriptionProductTextField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        descriptionProductTextField.setPreferredSize(new java.awt.Dimension(288, 25));
+        descriptionProductTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 updateTable(evt);
             }
         });
 
-        removeProviderButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        removeProviderButton.setText("Aceptar");
-        removeProviderButton.addActionListener(new java.awt.event.ActionListener() {
+        removeProductButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        removeProductButton.setText("Aceptar");
+        removeProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectProvider(evt);
             }
         });
 
-        removeProviderTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
+        removeProductTable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        removeProductTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -100,17 +100,17 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
                 {null, null}
             },
             new String [] {
-                "Número", "Proveedor"
+                "Código de barras", "Descripción"
             }
         ));
-        removeProviderTable.setMinimumSize(new java.awt.Dimension(30, 143));
-        jScrollPane5.setViewportView(removeProviderTable);
+        removeProductTable.setMinimumSize(new java.awt.Dimension(30, 143));
+        jScrollPane5.setViewportView(removeProductTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(removeProviderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(removeProductButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -120,7 +120,7 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(titleLabel))
-                    .addComponent(nameProviderTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(descriptionProductTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,18 +131,18 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(descriptionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameProviderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(descriptionProductTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removeProviderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(removeProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        moduleNameLabel.setBackground(new java.awt.Color(0, 153, 51));
+        moduleNameLabel.setBackground(new java.awt.Color(204, 204, 0));
         moduleNameLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         moduleNameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        moduleNameLabel.setText("    PROVEEDORES");
+        moduleNameLabel.setText("    PRODUCTOS");
         moduleNameLabel.setOpaque(true);
         moduleNameLabel.setPreferredSize(new java.awt.Dimension(600, 30));
 
@@ -170,19 +170,19 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectProvider
-        int selectedRow = removeProviderTable.getSelectedRow();
-        Object identifier = removeProviderTable.getValueAt(selectedRow, 0);
+        int selectedRow = removeProductTable.getSelectedRow();
+        Object identifier = removeProductTable.getValueAt(selectedRow, 0);
         swapPanels();
         switchPanel.setData(identifier.toString());
     }//GEN-LAST:event_selectProvider
 
     private void updateTable(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_updateTable
-        String nameProvider = nameProviderTextField.getText();
-        Object listProvider[][] = adminProvider.getProviderList(nameProvider);
-        removeProviderTable.setModel(new javax.swing.table.DefaultTableModel(
-            listProvider,
+        String descriptionProduct = descriptionProductTextField.getText();
+        Object listProduct[][] = adminProduct.getProductList(descriptionProduct);
+        removeProductTable.setModel(new javax.swing.table.DefaultTableModel(
+            listProduct,
             new String [] {
-                "Número", "Proveedor"
+                "Código de barras", "Descripción"
             }
         ));
     }//GEN-LAST:event_updateTable
@@ -190,14 +190,14 @@ public class ViewRemoveProviderTablePanel extends SwitchJPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JTextField descriptionProductTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel moduleNameLabel;
-    private javax.swing.JTextField nameProviderTextField;
-    private javax.swing.JButton removeProviderButton;
-    private javax.swing.JTable removeProviderTable;
+    private javax.swing.JButton removeProductButton;
+    private javax.swing.JTable removeProductTable;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
     
-    private AdminProvider adminProvider;
+    private AdminProduct adminProduct;
 }

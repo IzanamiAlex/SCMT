@@ -103,7 +103,7 @@ public class ViewProvider extends javax.swing.JFrame {
     private void addTabs(){
         addProduct = new ViewAddProviderPanel(adminProvider);
         
-        modifyProviderTable = new ViewModifyProviderTablePanel(adminProvider);
+        modifyProviderTable = new ViewProviderSelectChangePanel(adminProvider);
         modifyProvider = new ViewModifyProviderPanel(adminProvider);
         
         modifyProviderTable.setTabs(tabs);
@@ -114,7 +114,7 @@ public class ViewProvider extends javax.swing.JFrame {
         modifyProvider.setSwitchPanel(modifyProviderTable);
         modifyProvider.setName("Modificar proveedor");
         
-        removeProviderTable = new ViewRemoveProviderTablePanel(adminProvider);
+        removeProviderTable = new ViewProviderSelectRemovePanel(adminProvider);
         removeProvider = new ViewRemoveProviderPanel(adminProvider);
         
         removeProviderTable.setTabs(tabs);
@@ -138,8 +138,8 @@ public class ViewProvider extends javax.swing.JFrame {
 
     private AdminProvider adminProvider;
     private ViewAddProviderPanel addProduct;
-    private ViewModifyProviderTablePanel modifyProviderTable;
+    private ViewProviderSelectChangePanel modifyProviderTable;
     private ViewModifyProviderPanel modifyProvider;
-    private ViewRemoveProviderTablePanel removeProviderTable;
+    private ViewProviderSelectRemovePanel removeProviderTable;
     private ViewRemoveProviderPanel removeProvider;
 }

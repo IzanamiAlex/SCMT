@@ -105,7 +105,7 @@ public class ViewProduct extends javax.swing.JFrame {
     private void addTabs(){
         addProduct = new ViewAddProductPanel(adminProduct);
         
-        modifyProductTable = new ViewModifyProductTablePanel(adminProduct);
+        modifyProductTable = new ViewProductSelectChangePanel(adminProduct);
         modifyProduct = new ViewModifyProductPanel(adminProduct);
         
         modifyProductTable.setTabs(tabs);
@@ -116,7 +116,7 @@ public class ViewProduct extends javax.swing.JFrame {
         modifyProduct.setSwitchPanel(modifyProductTable);
         modifyProduct.setName("Modificar producto");
         
-        removeProductTable = new ViewRemoveProductTablePanel(adminProduct);
+        removeProductTable = new ViewProductSelectRemovePanel(adminProduct);
         removeProduct = new ViewRemoveProductPanel(adminProduct);
         
         removeProductTable.setTabs(tabs);
@@ -140,8 +140,8 @@ public class ViewProduct extends javax.swing.JFrame {
 
     private AdminProduct adminProduct;
     private ViewAddProductPanel addProduct;
-    private ViewModifyProductTablePanel modifyProductTable;
+    private ViewProductSelectChangePanel modifyProductTable;
     private ViewModifyProductPanel modifyProduct;
-    private ViewRemoveProductTablePanel removeProductTable;
+    private ViewProductSelectRemovePanel removeProductTable;
     private ViewRemoveProductPanel removeProduct;
 }
