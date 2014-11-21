@@ -12,7 +12,7 @@ import java.util.Set;
 public abstract class AbstractDAO<T> {
     
     public AbstractDAO(){
-        this("localhost", "scmt", "postgres", "root", "org.postgresql.Driver");
+        this("localhost", "scmt", "postgres", "chopper", "org.postgresql.Driver");
     }
     
     public AbstractDAO(String host, String database, String login, String password,String driver) {
@@ -61,7 +61,7 @@ public abstract class AbstractDAO<T> {
         return loadedDriver;
     }
     
-    protected final Connection getConnection(){
+    public final Connection getConnection(){
         Connection connection = null;
         String urlConnection = "jdbc:postgresql://"+ host +"/" + database;
         try {
@@ -106,7 +106,7 @@ public abstract class AbstractDAO<T> {
         return numRowsModify;
     }
     
-    private Set<T> executeQuery(String query) throws SQLException{
+    public Set<T> executeQuery(String query) throws SQLException{
         Connection connection = getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultQuery = statement.executeQuery(query);

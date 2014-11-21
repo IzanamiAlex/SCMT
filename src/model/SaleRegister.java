@@ -9,6 +9,7 @@ package model;
 
 import java.util.Date;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -32,25 +33,25 @@ public class SaleRegister {
         this.saleDate = saleDate;
     }
 
-//    public void addProduct(Product product){
-//        if ( getProductList().containsKey(product) ) {
-//            int quantity = getProductList().get(product)+1;
-//            getProductList().put(product, quantity);
-//        }else{
-//            getProductList().put(product, 1);
-//        }
-//    }
-//
-//    public void removeProduct(Product product){
-//        if ( getProductList().containsKey(product) ) {
-//            if ( getProductList().get(product) > 1 ) {
-//                int quantity = getProductList().get(product)-1;
-//                getProductList().put(product, quantity);
-//            }else{
-//                getProductList().remove(product);
-//            }
-//        }
-//    }
+    public void addProduct(Product product){
+        if ( getProductList().containsKey(product) ) {
+            int quantity = getProductList().get(product)+1;
+            getProductList().put(product, quantity);
+        }else{
+            getProductList().put(product, 1);
+        }
+    }
+
+    public void removeProduct(Product product){
+        if ( getProductList().containsKey(product) ) {
+            if ( getProductList().get(product) > 1 ) {
+                int quantity = getProductList().get(product)-1;
+                getProductList().put(product, quantity);
+            }else{
+                getProductList().remove(product);
+            }
+        }
+    }
 
     public boolean isCharged(){
         return charged;
@@ -79,11 +80,15 @@ public class SaleRegister {
     public void setCharged(boolean charged){
         this.charged = charged;
     }
-
+    
     public Map<Product,Integer> getProductList(){
-        return productList;
+        return Collections.unmodifiableMap(productList);
 
     }
+//    public Map<Product,Integer> getProductList(){
+//        return productList;
+//
+//    }
 
     private long saleNumber;
     private boolean charged = false;

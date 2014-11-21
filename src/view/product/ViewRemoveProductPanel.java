@@ -10,6 +10,7 @@ import view.SwitchJPanel;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import controller.AdminProduct;
+import static data.ProductConstants.*;
 
 /**
  *
@@ -36,13 +37,13 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
     public void setData(String barcode) {
         dataProduct = adminProduct.getDataProduct(barcode);
         
-        barcodeTextField.setText(dataProduct.get("barcode"));
-        descriptionTextField.setText(dataProduct.get("description"));
-        priceUnitTextField.setText(dataProduct.get("priceUnit"));
-        saleUnitTextField.setText(dataProduct.get("priceSaleUnit"));
-        departamentTextField.setText(dataProduct.get("departament"));
-        currentStockTextField.setText(dataProduct.get("currentStock"));
-        minimunStockTextField.setText(dataProduct.get("minimunStock"));
+        barcodeTextField.setText(dataProduct.get(BARCODE));
+        descriptionTextField.setText(dataProduct.get(DESCRIPTION));
+        priceUnitTextField.setText(dataProduct.get(PRICE));
+        saleUnitTextField.setText(dataProduct.get(SALES_UNIT));
+        departamentTextField.setText(dataProduct.get(DEPARTAMENT));
+        currentStockTextField.setText(dataProduct.get(CURRENT_STOCK));
+        minimunStockTextField.setText(dataProduct.get(MINIMUN_STOCK));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -277,7 +278,7 @@ public class ViewRemoveProductPanel extends SwitchJPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeProvider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProvider
-        String barcodeProduct = dataProduct.get("barcode");
+        String barcodeProduct = dataProduct.get(BARCODE);
         adminProduct.removeProduct(barcodeProduct);
         
         String message = "Se ha eliminado el producto con el código de barras "+

@@ -57,14 +57,14 @@ public class Seller {
     public void addProduct(long barcode){
         try {
             Product product = daoProduct.find(((Long)barcode).toString());
-            Map<Product,Integer> productList = saleRegister.getProductList();
-            if ( productList.containsKey(product) ) {
-                int quantity = productList.get(product)+1;
-                productList.put(product, quantity);
-            }else{
-                productList.put(product, 1);
-            }
-            //saleRegister.addProduct(product);
+//            Map<Product,Integer> productList = saleRegister.getProductList();
+//            if ( productList.containsKey(product) ) {
+//                int quantity = productList.get(product)+1;
+//                productList.put(product, quantity);
+//            }else{
+//                productList.put(product, 1);
+//            }
+            saleRegister.addProduct(product);
         } catch (SQLException ex) {
             Logger.getLogger(Seller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,32 +73,20 @@ public class Seller {
     public void removeProduct(long barcode){
         try {
             Product product = daoProduct.find(((Long)barcode).toString());
-            Map<Product,Integer> productList = saleRegister.getProductList();
-            if ( productList.containsKey(product) ) {
-            if ( productList.get(product) > 1 ) {
-                int quantity = productList.get(product)-1;
-                productList.put(product, quantity);
-            }else{
-                productList.remove(product);
-            }
-        }
-            //Product product = findProduct(barcode);
-            //saleRegister.removeProduct(product);
+//            Map<Product,Integer> productList = saleRegister.getProductList();
+//            if ( productList.containsKey(product) ) {
+//                if ( productList.get(product) > 1 ) {
+//                    int quantity = productList.get(product)-1;
+//                    productList.put(product, quantity);
+//                }else{
+//                    productList.remove(product);
+//                }
+//            }
+            saleRegister.removeProduct(product);
         } catch (SQLException ex) {
             Logger.getLogger(Seller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-//    public Product findProduct(long barcode){
-//        String barcode_str = String.valueOf(barcode);
-//        Product product = null;
-//        try {
-//            product = daoProduct.find(barcode_str);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Seller.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return product;
-//    }
 
     public double getCostProductQuantity(long barcode){
         Map<Product, Integer> productList = saleRegister.getProductList();

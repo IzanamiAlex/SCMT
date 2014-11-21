@@ -6,6 +6,7 @@
 
 package data;
 
+import static data.ProductConstants.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -78,13 +79,13 @@ public class DAOProduct extends AbstractDAO<Product>{
     protected Set<Product> buildEntitys(ResultSet resultQuery) throws SQLException {
         Set<Product> setProducts = new HashSet<>();
         while(resultQuery.next()){
-            long barcodeProduct = resultQuery.getLong("barcode");
-            String descriptionProduct = resultQuery.getString("description");
-            String salesUnitProduct = resultQuery.getString("sales_unit");
-            double priceProduct = Double.parseDouble(resultQuery.getString("price"));
-            String departamentProduct = resultQuery.getString("departament");
-            double currentStock = resultQuery.getDouble("current_stock");
-            double minimunStock = resultQuery.getDouble("minimun_stock");
+            long barcodeProduct = resultQuery.getLong(BARCODE);
+            String descriptionProduct = resultQuery.getString(DESCRIPTION);
+            String salesUnitProduct = resultQuery.getString(SALES_UNIT);
+            double priceProduct = Double.parseDouble(resultQuery.getString(PRICE));
+            String departamentProduct = resultQuery.getString(DEPARTAMENT);
+            double currentStock = resultQuery.getDouble(CURRENT_STOCK);
+            double minimunStock = resultQuery.getDouble(MINIMUN_STOCK);
             Product product = new Product(barcodeProduct, descriptionProduct, 
                 priceProduct, salesUnitProduct, departamentProduct,currentStock,minimunStock);
             setProducts.add(product);

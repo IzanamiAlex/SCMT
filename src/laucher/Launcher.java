@@ -9,11 +9,14 @@ package laucher;
 import controller.AdminProduct;
 import view.product.ViewProduct;
 import controller.AdminProvider;
+import controller.AdminService;
 import controller.Seller;
 import data.DAOProvider;
 import view.provider.ViewProvider;
 import view.sale.ViewSale;
 import data.DAOProduct;
+import data.DAOService;
+import view.services.ViewService;
 
 /**
  *
@@ -40,6 +43,7 @@ public class Launcher extends javax.swing.JFrame {
         inventoryModuleButton = new javax.swing.JButton();
         salesModuleButton = new javax.swing.JButton();
         reportsModuleButton = new javax.swing.JButton();
+        servicesModuleButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,18 @@ public class Launcher extends javax.swing.JFrame {
         });
 
         reportsModuleButton.setText("Reportes");
+        reportsModuleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                launchReportsModule(evt);
+            }
+        });
+
+        servicesModuleButton.setText("Servicios");
+        servicesModuleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                launchServiceModule(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,6 +96,10 @@ public class Launcher extends javax.swing.JFrame {
                     .addComponent(salesModuleButton)
                     .addComponent(reportsModuleButton))
                 .addGap(57, 57, 57))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(servicesModuleButton)
+                .addGap(150, 150, 150))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +108,9 @@ public class Launcher extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(providerModuleButton)
                     .addComponent(salesModuleButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(servicesModuleButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inventoryModuleButton)
                     .addComponent(reportsModuleButton))
@@ -140,6 +162,24 @@ public class Launcher extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_salesModuleButtonActionPerformed
 
+    private void launchReportsModule(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_launchReportsModule
+        // TODO add your handling code here:
+    }//GEN-LAST:event_launchReportsModule
+
+    private void launchServiceModule(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_launchServiceModule
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                /**************************
+                *DAO = Data Access Object *
+                ***************************/
+                DAOService daoService = new DAOService();
+                AdminService adminService = new AdminService(daoService);
+                ViewService viewService = new ViewService(adminService);
+                viewService.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_launchServiceModule
+
     /**
      * @param args the command line arguments
      */
@@ -181,5 +221,6 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JButton providerModuleButton;
     private javax.swing.JButton reportsModuleButton;
     private javax.swing.JButton salesModuleButton;
+    private javax.swing.JButton servicesModuleButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -96,3 +96,30 @@ CREATE SEQUENCE serial_sale_number
   CACHE 1;
 ALTER TABLE serial_sale_number
   OWNER TO postgres;
+
+CREATE TABLE service
+(
+  identifier bigint NOT NULL,
+  description character varying(50) NOT NULL,
+  characteristics character varying(250) NOT NULL,
+  estimate_price double precision NOT NULL,
+  date_receipt date NOT NULL,
+  date_delivery date NOT NULL,
+  is_did boolean NOT NULL,
+  is_delivered boolean NOT NULL,
+  CONSTRAINT "pk-service" PRIMARY KEY (identifier )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE service
+  OWNER TO postgres;
+
+CREATE SEQUENCE serial_id_service
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 15
+  CACHE 1;
+ALTER TABLE serial_id_service
+  OWNER TO postgres;

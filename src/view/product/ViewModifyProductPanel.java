@@ -10,6 +10,7 @@ import view.SwitchJPanel;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import controller.AdminProduct;
+import static data.ProductConstants.*;
 
 /**
  *
@@ -33,13 +34,13 @@ public class ViewModifyProductPanel extends SwitchJPanel {
     public void setData(String barcode) {
         dataProduct = adminProduct.getDataProduct(barcode);
 
-        barcodeTextField.setText(dataProduct.get("barcode"));
-        descriptionTextField.setText(dataProduct.get("description"));
-        priceUnitTextField.setText(dataProduct.get("priceUnit"));
-        saleUnitTextField.setText(dataProduct.get("priceSaleUnit"));
-        departamentTextField.setText(dataProduct.get("departament"));
-        currentStockTextField.setText(dataProduct.get("currentStock"));
-        minimunStockTextField.setText(dataProduct.get("minimunStock"));
+        barcodeTextField.setText(dataProduct.get(BARCODE));
+        descriptionTextField.setText(dataProduct.get(DESCRIPTION));
+        priceUnitTextField.setText(dataProduct.get(PRICE));
+        saleUnitTextField.setText(dataProduct.get(SALES_UNIT));
+        departamentTextField.setText(dataProduct.get(DEPARTAMENT));
+        currentStockTextField.setText(dataProduct.get(CURRENT_STOCK));
+        minimunStockTextField.setText(dataProduct.get(MINIMUN_STOCK));
     }
     
     /**
